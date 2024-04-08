@@ -60,4 +60,4 @@ dkms.conf
 *.bbl
 *.blg
 *.fls
-/Latex/*.pdf
+/LaTeX/*.pdf
