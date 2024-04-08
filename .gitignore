@@ -57,4 +57,7 @@ dkms.conf
 *.gz
 *.synctex(busy)
 *.fdb_latexmk
+*.bbl
+*.blg
+*.fls
 /Latex/*.pdf
