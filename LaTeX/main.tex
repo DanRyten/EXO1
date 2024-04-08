@@ -1,1 +1,80 @@
-LullLullLull
+documentclass[conference]{IEEEtran}
+% Include all packages from file.
+% Report template for Mälardalen University
+% Original template can be found 
+% httpswww.overleaf.comlatextemplatesieee-bare-demo-template-for-conferencesypypvwjmvtdf
+% Template file structure organised by Emil Persson
+% The following packages should follow the IEEE conference guidelines.
+
+% Swedish language package 
+usepackage[utf8]{inputenc}
+usepackage[T1]{fontenc}
+usepackage[swedish,english]{babel}
+
+% Graphics
+usepackage{graphicx, float, subfigure, blindtext}
+
+newcommandIEEEhyperrefsetup{
+bookmarks=true,bookmarksnumbered=true,%
+colorlinks=true,linkcolor={black},citecolor={black},urlcolor={black}%
+}
+
+% Preferred hyperref setup, Michael Shell
+usepackage[IEEEhyperrefsetup, pdftex]{hyperref}
+
+% Maths
+usepackage{mathtools}
+
+% These packages must be at the end
+usepackage[nolist,nohyperlinks]{acronym}
+usepackage{cleveref}
+graphicspath{{images}}
+
+% Remove section first paragraph indent
+usepackage{titlesec}
+titlespacing{section}{0pt}{1}{1}
+titlespacing{subsection}{0pt}{1}{1}
+renewcommand{thesubsubsection}{arabic{subsubsection}}
+titleformat{subsubsection}[runin]{itshape}{thesubsubsection)}{1em}{}[]
+titlespacing{subsubsection}{parindent}{0pt}{1}
+
+% Include authors 
+author{IEEEauthorblockN{ %
+Student OneIEEEauthorrefmark{1},
+Student TwoIEEEauthorrefmark{2}, 
+Student ThreeIEEEauthorrefmark{3}
+}
+IEEEauthorblockA{
+School of Innovation, Design and, Engineering
+Mälardalens University, Västerås, Sweden
+Email
+IEEEauthorrefmark{1}studentOne, 
+IEEEauthorrefmark{2}studentTwo,
+IEEEauthorrefmark{3}studentThree@student.mdh.se
+}}
+
+% ACRONYMS acrodef{acronym}[short name]{full name}
+acrodef{svm}[SVM]{Support Vector Machine}
+
+% The report title.
+title{IEEEtran Technical Reports Template
+Mälardalen University}
+% Document begins here
+begin{document}
+% Create the title.
+maketitle
+% Example sections, name them
+% according to specific needs.
+input{sectionsabstract}
+input{sectionskeywords}
+input{sectionsintroduction}
+input{sectionsmethod}
+input{sectionsresults}
+input{sectionsdiscussion}
+input{sectionsconclusion}
+input{sectionsacknowledgement}
+% Select the IEEEtran style
+bibliographystyle{IEEEtran}
+% Include bibliography file
+bibliography{IEEEabrv,refs}
+end{document}
