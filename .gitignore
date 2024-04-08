@@ -50,3 +50,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Latex Aux files
+*.aux
+*.log
+*.gz
+*.synctex(busy)
+*.fdb_latexmk
+*.bbl
+*.blg
+*.fls
+LaTeX/main.pdf
