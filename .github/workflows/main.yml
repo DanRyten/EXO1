@@ -1,0 +1,39 @@
+name: Compile LaTeX
+
+on:
+  pull_request:
+    branches:
+      - main
+      - dev
+      - Introduction
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up LaTeX
+      uses: xu-cheng/latex-action@v2
+      with:
+        root_file: main.tex
+
+    - name: Compile LaTeX
+      run: |
+        cd LaTeX
+        pdflatex main.tex
+
+    - name: Commit PDF changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add LaTeX/main.pdf
+        git commit -m "(Auto) Compile LaTeX to PDF"
+    
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+        branch: ${{ github.head_ref }}
+        directory: LaTeX
