@@ -41,3 +41,15 @@
 - Ordered joystick
 - Recieved NI roboRIO from Martin
 - Requested access to the 3d printers
+
+- ## 2024-04-16
+- Testing the RoboRio and trying to make it work
+- Worked on the powerpoint and added some slides
+- Got access to the 3d printer room
+- Tested the myoware and and received some test signals
+
+- ## 2024-04-17
+- Had meeting with Martin about research questions and hardware
+- Worked more on the roboRIO
+- Finished the power point
+- Recieved the joystick  
