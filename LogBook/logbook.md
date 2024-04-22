@@ -53,3 +53,8 @@
 - Worked more on the roboRIO
 - Finished the power point
 - Recieved the joystick  
+
+## 2024-04-22
+- Got a short presentation on emg and a new temporary measurment device (analog discovery studio)
+- Reading and planning on writing the introduction for the report
+- Ash is working on the fixture for the exoskeleton arm in solidworks.
