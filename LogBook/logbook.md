@@ -58,3 +58,20 @@
 - Got a short presentation on emg and a new temporary measurment device (analog discovery studio)
 - Reading and planning on writing the introduction for the report
 - Ash is working on the fixture for the exoskeleton arm in solidworks.
+
+## 2024-04-23
+- Got help with the myoware from martin
+- Soldered cables to the myoware
+- Daniel got the roboRIO working on one computer (downloaded everything)
+- Started writing the introduction
+
+## 2024-04-24
+- Worked with the myowares (1.0 works fine, 2.0 doesnt give any consistent)
+- Tested the joystick (works)
+- Worked on admidistrative work
+- Worked on the introduction (what is an exoskeleton, what is emg and related works)
+
+## 2024-04-25
+- Worked on setting up LabView with the roboRIO
+- Fixed citations on LaTeX
+- Worked on the introduction
