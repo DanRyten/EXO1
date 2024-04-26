@@ -29,7 +29,16 @@ artifacts.
 
 \subsubsection{\acs{emg} feature extraction}
 
-TEXT
+\ac{emg} control systems perform signal analysis on time segments from which usually three types of features are considered \cite{EMGprediction}:
+\begin{itemize}
+    \item \textbf{Time-domain features:} these are computed froom the raw \ac{emg} and involve a lower computation cost than the other types of features,
+    reason as to why they are widely used in classification and regression models. These features include \ac{mav}, \ac{rms}, \ac{zc}, \ac{ssc} and \ac{wl}
+    among others.
+    \item \textbf{Frequency-domain features:} some of the most common features extracted from the frequency domain are the \ac{ps}, \ac{mnf} and \ac{fr}.
+    These however, involve a higher computational cost than the time-domain features.
+    \item \textbf{Time-frequency domain features:} these features can localize the energy of the signal both in time and frequency, but they usually
+    require a transformation that increases the computational cost, like it happens with the \ac{stft} or the \ac{wt}.
+\end{itemize}
 
 \subsubsection{Continuous motion prediction}
 
@@ -41,7 +50,7 @@ researchers are now focusing on \ac{ml} techniques such as \ac{knn}, \ac{lda}, \
 
 \subsection{Related Works}
 Related work: %Probably more could be written about what it achieved. Rn it feels harsher than it should be
-This project is based on the work of \cite{AFES}, which achieved a working exoskeleton that could be driven by the bicep. However, the resulting 
+This project is based on the work of \acf{afes} \cite{AFES}, which achieved a working exoskeleton that could be driven by the bicep. However, the resulting 
 exoskeleton presented some limitations. The exoskeleton was mounted on a stand, rendering it therefore unwearable. Another significant limitation 
 that the exoskeleton exhibits lies in the fact that it can only be driven by the bicep. As such, the exoskeleton can only show three different states, 
 with them being fully extended, fully contracted, and at rest. One key issue that made the exoskeleton a valuable proof of concept, but not a viable 
