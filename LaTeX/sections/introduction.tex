@@ -8,50 +8,30 @@ exoskeletons are passive providing no extra power of their own but simply redist
 project is to advance the possibility of commercially viable exoskeletons that can assist workers in these fields by aiding 
 them in bending and extending their arms as well as holding them in place.
 
-Introduction:
-    Introduce the reader: %done
-        What are exoskeletons?
-        What is EMG?
-    Motivation: %done
-        Static struggles!
-            Medical work:
-                Assistance while having to hold patients in exact positions for long durations during surgeries
+\subsection{Problem Formulation and Limitations}
+The goals of this project are here listed in descending order of priority:
+\begin{itemize}
+        
+    \item RQ1: Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
 
-            Industrial work:
-                Assistance while working in awkward positions like overhead or under the hood of a car for example
+    \item RQ2: Can the elbow actuator drive at variable speeds related to the effort expended by the wearer?
 
-            Agricultural work:
-                Assistance while working overhead to pick for example mangos
-            
-            All above:
-                Helps while carrying stuff
+    \item RQ3: Can the latency of the actuator acting be reduced?
 
-    Describe the subject: %done
-        Idk, stuff?
+\end{itemize}
+RQ1 is the item of most import since that would allow workers to accomplish static tasks instead of only getting dynamic assistance 
+allowing for the user to functionally rest while at work. RQ2 would allow for the user to start and stop more carefully so that they 
+find the exaxct position they wish to hold more easily, while RQ3 would allow for the exoskeleton to be used in realtime.
+This would be accoplished through additional sensors, a different choice of AI method as well as updated hardware and a different 
+choice of programming language.
 
-    Aim of the thesis work: %done
-        Problem formulation: %This sounds a lot like aim of the thesis work so I added it here
-            Research questions:
-            \begin{itemize}
-                 
-                \item RQ1: Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
 
-                \item RQ2: Can the elbow actuator drive at variable speeds related to the effort expended by the wearer?
 
-                \item RQ3: Can the latency of the actuator acting be reduced?
 
-            \end{itemize}
-
-            Problem:
-                
-
-            Limitations:
-                This project was subject to several restraints from the beginning. The overarching one was the limited time of 8 weeks which was
-                exasperated by the need to procure sensors, DAQ systems and applicable software. This factor mainly delayed the data acquisition. 
-                Although the exoskeleton was assembled with degrees of freedom only the elbow joint was used. This was due to the larger complexity 
-                of a shoulder movement requiring additional sensors and a larger system on all fronts.
-            
-            Relevance: %this is mostly motivation I guess
+This project was subject to several restraints from the beginning. The overarching one was the limited time of 8 weeks which was
+exasperated by the need to procure sensors, DAQ systems and applicable software. This factor mainly delayed the data acquisition. 
+Although the exoskeleton was assembled with degrees of freedom only the elbow joint was used. This was due to the larger complexity 
+of a shoulder movement requiring additional sensors and a larger system on all fronts.
 
 
 Background: 
@@ -62,9 +42,13 @@ Background:
         exoskeleton presented some limitations. The exoskeleton was mounted on a stand, rendering it therefore unwearable. Another significant limitation 
         that the exoskeleton exhibits lies in the fact that it can only be driven by the bicep. As such, the exoskeleton can only show three different states, 
         with them being fully extended, fully contracted, and at rest. One key issue that made the exoskeleton a valuable proof of concept, but not a viable 
-        product consists on the limitations of the hardware and software used. The \acs{emg} sensor used employed an outdated Bluetooth module and the software was 
-        written in Python, which due to its performance is not suitable for real-time applications in such a limited hardware.
-
+        product consists of the limitations of the hardware and software used. The \acs{emg} sensor used employed an outdated Bluetooth module and the software was 
+        written in Python, which due to its performance is not suitable for real-time applications in such limited hardware. 
+        \\\\
+        One study "Real-time Multiple-Channel Shoulder EMG Processing for a Rehabilitative Upper-limb Exoskeleton Motion Control Using ANN Machine Learning" \cite{shoulderexo},
+        worked on a 12-channel shoulder sEMG system with the use of machine learning techniques. Through the testing they used Delsys EMG sensors, LABVIEW with ML toolbox and an 
+        upper limb exoskeleton where a DAQ and arduino boards was used for motion control. For the recognition of the shoulder motion and the different patterns ANN was used as an 
+        ML technique. During testing the accuracy of the movement sensors was controlled with the used of eighteen test subjects.
     Research platforms/groups:
 
     State of the art:
