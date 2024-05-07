@@ -52,7 +52,7 @@ def objective_function(solution):
     input_size = 375  
     hidden_size = 375  
     num_lstm_layers = 2  
-    output_classes = 3  
+    output_classes = 4  
     
     model = RNN(input_size, hidden_size, num_lstm_layers, lstm_size1, lstm_size2, output_classes)
     
