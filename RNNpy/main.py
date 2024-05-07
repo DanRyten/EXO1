@@ -1,11 +1,11 @@
 from mealpy import GWO
-import rnn
+from rnn import objective_function
 
 # TODO: Load dataset, window data, and pass it to the RNN model
 
 # Define the mealpy problem
 problem = {
-    "obj_func": rnn.objective_function,
+    "obj_func": objective_function,
     "variables": 4,
     "variables_info": {
         "lstm_size1": [10, 150],
