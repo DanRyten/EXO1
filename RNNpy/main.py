@@ -1,18 +1,27 @@
 from mealpy import GWO
+from mealpy.utils.space import IntegerVar, FloatVar
 from rnn import objective_function
 
-# TODO: Load dataset, window data, and pass it to the RNN model
-
-# Define the mealpy problem
+'''
+Definition of the Mealpy problem for optimizing the RNN parameters.
+Parameters:
+    obj_func: The objective function to optimize (the precision of the trained RNN).
+    variables: The number of variables in the problem.
+    variables_info: A dictionary containing the information of each variable.
+    bounds: A list containing the bounds of the variables.
+    minmax: The optimization goal (minimize or maximize).
+    log_to: The output file to log the optimization process.
+'''
 problem = {
     "obj_func": objective_function,
     "variables": 4,
     "variables_info": {
-        "lstm_size1": [10, 150],
-        "lstm_size2": [10, 150],
-        "num_epochs": [10, 100],
-        "learning_rate": [0.000001, 0.1]
+        "lstm_size1": IntegerVar(10, 150),
+        "lstm_size2": IntegerVar(10, 150),
+        "num_epochs": IntegerVar(10, 100),
+        "learning_rate": FloatVar(0.000001, 0.1)
     },
+    "bounds": [IntegerVar(10, 150), IntegerVar(10, 150), IntegerVar(10, 100), FloatVar(0.000001, 0.1)],
     "minmax": "max",
     "log_to": "console",
 }

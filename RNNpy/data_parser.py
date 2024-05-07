@@ -5,18 +5,30 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 class ParsedFile:
+    '''
+    Class to parse the data from the EMG csv files.
+    '''
+
     def __init__(self, filename):
+        '''
+        Initialize the ParsedFile object.
+        Parameters:
+            filename: The path of the csv file to parse.
+        '''
         self.filename = filename
-        self.metadata, self.inputs, self.classes = parse_datafile(filename)
-        self.inputs = [[float(x) for x in input] for input in self.inputs]
+        self.metadata, self.inputs_c1, self.inputs_c2, self.classes = parse_datafile(filename)
+        self.inputs_c1 = [float(input) for input in self.inputs_c1]
+        self.inputs_c2 = [float(input) for input in self.inputs_c2]
         self.classes = [int(cls) for cls in self.classes]
 
     def draw(self):
+        '''
+        Draw the data. (Mostly for data analysis purposes. It shows both channels and the corresponding class.)
+        '''
         makedirs('./plots', exist_ok=True)
 
         # Plot inputs
-        inputs = list(zip(*self.inputs))
-        num_points = len(inputs[0])
+        num_points = len(self.inputs_c1)
         chunk_size = num_points // 8
 
         for i in range(8):
@@ -27,8 +39,8 @@ class ParsedFile:
 
             ax1.set_xlabel('Channel 1 Data Point')
             ax1.set_ylabel('Amplitude')
-            ax1.plot(range(start, end), inputs[0][start:end], color='blue', label='Channel 1', linewidth=0.5)
-            ax1.plot(range(start, end), inputs[1][start:end], color='red', label='Channel 2', linewidth=0.5)
+            ax1.plot(range(start, end), self.inputs_c1[start:end], color='blue', label='Channel 1', linewidth=0.5)
+            ax1.plot(range(start, end), self.inputs_c2[start:end], color='red', label='Channel 2', linewidth=0.5)
 
             ax2 = ax1.twinx()
             ax2.set_ylabel('Class')
@@ -43,8 +55,19 @@ class ParsedFile:
 
 
 def parse_datafile(filename):
+    '''
+    Parse the data from the csv file.
+    Parameters:
+        filename: The path of the csv file to parse.
+    Returns:
+        metadata: A dictionary containing the metadata of the file.
+        inputs_c1: A list containing the inputs from channel 1.
+        inputs_c2: A list containing the inputs from channel 2.
+        classes: A list containing the classes.
+    '''
     metadata = {}
-    inputs = []
+    inputs_c1 = []
+    inputs_c2 = []
     classes = []
     with open(filename) as datafile:
         reader = csv.reader(datafile, delimiter=';')
@@ -60,10 +83,11 @@ def parse_datafile(filename):
 
         # Read data
         for row in reader:
-            inputs.append([row[1], row[2]])
+            inputs_c1.append(row[1])
+            inputs_c2.append(row[2])
             classes.append(row[-1])
 
-    return metadata, inputs, classes
+    return metadata, inputs_c1, inputs_c2, classes
 
 # Test
 #data1 = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_119.csv')
