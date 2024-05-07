@@ -22,7 +22,7 @@ class ParsedFile:
         for i in range(8):
             start = i * chunk_size
             end = (i + 1) * chunk_size
-            
+
             fig, ax1 = plt.subplots(figsize=(20, 10))
 
             ax1.set_xlabel('Channel 1 Data Point')
@@ -66,5 +66,11 @@ def parse_datafile(filename):
     return metadata, inputs, classes
 
 # Test
-data = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_119.csv')
-data.draw()
+#data1 = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_119.csv')
+#data1.draw()
+
+#data2 = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_118.csv')
+#data2.draw()
+
+#data3 = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_117.csv')
+#data3.draw()
