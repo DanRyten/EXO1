@@ -4,6 +4,8 @@ from os.path import basename
 from matplotlib import pyplot as plt
 import numpy as np
 
+DATA_SPLITS = 8 # Number of splits to divide the data for plotting
+
 class ParsedFile:
     '''
     Class to parse the data from the EMG csv files.
@@ -29,9 +31,9 @@ class ParsedFile:
 
         # Plot inputs
         num_points = len(self.inputs_c1)
-        chunk_size = num_points // 8
+        chunk_size = num_points // DATA_SPLITS
 
-        for i in range(8):
+        for i in range(DATA_SPLITS):
             start = i * chunk_size
             end = (i + 1) * chunk_size
 
