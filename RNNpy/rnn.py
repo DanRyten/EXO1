@@ -76,22 +76,31 @@ def objective_function(solution):
     '''
     lstm_size1, lstm_size2, num_epochs, learning_rate, batch_size = solution
     
+    # Set the device to GPU if available
+    if torch.cuda.is_available():
+        print(f"GPU: {torch.cuda.get_device_name(0)} is available.")
+        device = torch.device('cuda')
+    else:
+        print("No GPU available. Using CPU.")
+        device = torch.device('cpu')
+
     # Create the RNN model
     input_size = 2000  
     hidden_size = 1000   
     output_classes = 4  
     
     model = RNN(input_size, hidden_size, lstm_size1, lstm_size2, output_classes)
-    
+    model.to(device)
+
     # Define the loss function and optimizer
-    criterion = nn.CrossEntropyLoss()
+    criterion = nn.functional.binary_cross_entropy
     
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
     # Get the inputs and labels and convert them to tensors
     windowed_inputs, windowed_labels = get_inputs(FILES_TO_LOAD)
-    inputs_tensor = torch.tensor(windowed_inputs, dtype=torch.float32)
-    labels_tensor = torch.tensor(windowed_labels, dtype=torch.long)
+    inputs_tensor = torch.tensor(windowed_inputs, dtype=torch.float32).to(device)
+    labels_tensor = torch.tensor(windowed_labels, dtype=torch.long).to(device)
 
     # Create a PyTorch dataset
     dataset = torch.utils.data.TensorDataset(inputs_tensor, labels_tensor)
@@ -101,13 +110,12 @@ def objective_function(solution):
     dataloader = torch.utils.data.DataLoader(dataset, shuffle=False)
     
     # Train the model
-    #for epoch in range(int(num_epochs)):
-    for epoch in range(1): # For testing
+    for _ in range(int(num_epochs)):
         for inputs, labels in dataloader:
             # Forward pass
             outputs = model(inputs)
-            labels = nn.functional.one_hot(labels, num_classes=output_classes).float().squeeze()
-            loss = nn.functional.binary_cross_entropy(outputs, labels)
+            labels = nn.functional.one_hot(labels, num_classes=output_classes).float().squeeze().to(device)
+            loss = criterion(outputs, labels)
 
             # Backward and optimize
             optimizer.zero_grad()
@@ -121,9 +129,11 @@ def objective_function(solution):
         
         # Calculate the precision of the final model
         outputs = model(inputs)
-        _, predicted = torch.max(outputs.data, 1)
+        _, predicted = torch.max(outputs.data, 0)
         precision = (predicted == labels).sum().item() / labels.size(0)
     
+    print(f'Precision: {precision} ({(predicted == labels).sum().item()} / {labels.size(0)})')
+
     return precision
 
 def get_inputs(num_files):
