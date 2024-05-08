@@ -62,6 +62,8 @@ class RNN(nn.Module):
         # Forward through output layer
         out = self.output_layer(out)
 
+        out = torch.nn.functional.softmax(out, dim=0)
+
         return out
 
 def objective_function(solution):
@@ -95,15 +97,17 @@ def objective_function(solution):
     dataset = torch.utils.data.TensorDataset(inputs_tensor, labels_tensor)
 
     # Create a PyTorch dataloader
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size=int(batch_size), shuffle=False)
-
+    #dataloader = torch.utils.data.DataLoader(dataset, batch_size=int(batch_size), shuffle=False)
+    dataloader = torch.utils.data.DataLoader(dataset, shuffle=False)
     
     # Train the model
-    for epoch in range(int(num_epochs)):
+    #for epoch in range(int(num_epochs)):
+    for epoch in range(1): # For testing
         for inputs, labels in dataloader:
             # Forward pass
             outputs = model(inputs)
-            loss = criterion(outputs, labels)
+            labels = nn.functional.one_hot(labels, num_classes=output_classes).float().squeeze()
+            loss = nn.functional.binary_cross_entropy(outputs, labels)
 
             # Backward and optimize
             optimizer.zero_grad()
@@ -138,5 +142,5 @@ def get_inputs(num_files):
         inputs.extend(windowed_inputs)
         labels.extend(windowed_classes)
 
-    return torch.tensor(inputs), torch.tensor(labels)
+    return inputs, labels
         
