@@ -3,6 +3,8 @@ import torch.nn as nn
 from data_parser import ParsedFile
 from windowed_data import WindowedData
 
+FILES_TO_LOAD = 3
+
 class RNN(nn.Module):
     '''RNN model with 1 fully connected input layer, 2 LSTM layers, and 1 fully connected output layer.'''
 
@@ -67,8 +69,10 @@ def objective_function(solution):
     Objective function used by the optimizer to find the best hyperparameters for the RNN model.
     Parameters:
         solution: list of hyperparameters chosen by the optimizer
+    Returns:
+        precision: The precision of the model (% of accuracy over a dataset).
     '''
-    lstm_size1, lstm_size2, num_epochs, learning_rate = solution
+    lstm_size1, lstm_size2, num_epochs, learning_rate, batch_size = solution
     
     # Create the RNN model
     input_size = 2000  
@@ -82,19 +86,29 @@ def objective_function(solution):
     
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
-    # Get the inputs and labels
-    inputs, labels = get_inputs(1)
+    # Get the inputs and labels and convert them to tensors
+    windowed_inputs, windowed_labels = get_inputs(FILES_TO_LOAD)
+    inputs_tensor = torch.tensor(windowed_inputs, dtype=torch.float32)
+    labels_tensor = torch.tensor(windowed_labels, dtype=torch.long)
+
+    # Create a PyTorch dataset
+    dataset = torch.utils.data.TensorDataset(inputs_tensor, labels_tensor)
+
+    # Create a PyTorch dataloader
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=int(batch_size), shuffle=False)
+
     
     # Train the model
     for epoch in range(int(num_epochs)):
-        # Forward pass
-        outputs = model(inputs)
-        loss = criterion(outputs, labels)
-        
-        # Backward and optimize
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
+        for inputs, labels in dataloader:
+            # Forward pass
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+
+            # Backward and optimize
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
     
     # Evaluate the model
     with torch.no_grad():

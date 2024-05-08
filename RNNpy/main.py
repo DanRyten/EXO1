@@ -19,9 +19,10 @@ problem = {
         "lstm_size1": IntegerVar(10, 150),
         "lstm_size2": IntegerVar(10, 150),
         "num_epochs": IntegerVar(10, 100),
-        "learning_rate": FloatVar(0.000001, 0.1)
+        "learning_rate": FloatVar(0.000001, 0.1),
+        "batch_size": IntegerVar(128, 512),
     },
-    "bounds": [IntegerVar(10, 150), IntegerVar(10, 150), IntegerVar(10, 100), FloatVar(0.000001, 0.1)],
+    "bounds": [IntegerVar(10, 150), IntegerVar(10, 150), IntegerVar(10, 100), FloatVar(0.000001, 0.1), IntegerVar(128, 512)],
     "minmax": "max",
     "log_to": "console",
 }
