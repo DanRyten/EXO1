@@ -1,9 +1,11 @@
 import torch
 import torch.nn as nn
+import glob
+import os
 from data_parser import ParsedFile
 from windowed_data import WindowedData
 
-FILES_TO_LOAD = 3
+FILES_TO_LOAD = 76
 
 class RNN(nn.Module):
     '''RNN model with 1 fully connected input layer, 2 LSTM layers, and 1 fully connected output layer.'''
@@ -88,7 +90,7 @@ def objective_function(solution):
     input_size = 2000  
     hidden_size = 1000   
     output_classes = 4  
-    
+
     model = RNN(input_size, hidden_size, lstm_size1, lstm_size2, output_classes)
     model.to(device)
 
@@ -96,6 +98,8 @@ def objective_function(solution):
     criterion = nn.functional.binary_cross_entropy
     
     optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+    print("Model created")
 
     # Get the inputs and labels and convert them to tensors
     windowed_inputs, windowed_labels = get_inputs(FILES_TO_LOAD)
@@ -108,9 +112,14 @@ def objective_function(solution):
     # Create a PyTorch dataloader
     #dataloader = torch.utils.data.DataLoader(dataset, batch_size=int(batch_size), shuffle=False)
     dataloader = torch.utils.data.DataLoader(dataset, shuffle=False)
+
+    print("Data loaded.")
     
+    print("Model started.")
+
     # Train the model
-    for _ in range(int(num_epochs)):
+    for epoch in range(int(num_epochs)):
+        print(f'Epoch: {epoch + 1}')
         for inputs, labels in dataloader:
             # Forward pass
             outputs = model(inputs)
@@ -123,16 +132,21 @@ def objective_function(solution):
             optimizer.step()
     
     # Evaluate the model
+    precision = 0
     with torch.no_grad():
-        # Set the model to evaluation mode
         model.eval()
-        
-        # Calculate the precision of the final model
-        outputs = model(inputs)
-        _, predicted = torch.max(outputs.data, 0)
-        precision = (predicted == labels).sum().item() / labels.size(0)
+
+        for inputs, labels in dataloader:
+            outputs = model(inputs)
+            _, predicted = torch.max(outputs.data, 0)
+            precision += 1 if [predicted == labels] else 0
+
+        precision = precision / len(windowed_labels)
     
-    print(f'Precision: {precision} ({(predicted == labels).sum().item()} / {labels.size(0)})')
+    print(f'Precision: {precision * 100} ({precision * len(windowed_labels)} / {len(windowed_labels)})')
+
+    # Save the model
+    torch.save(model.state_dict(), 'EMG_RNN.pth')
 
     return precision
 
@@ -144,9 +158,20 @@ def get_inputs(num_files):
     '''
     inputs = []
     labels = []
+
+    pattern = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/*_*_*_TestSub*_ARM_*_*.csv'
+    files = glob.glob(pattern)
+
+    a = os.path.basename(files[0]).split('_')[-1].split('.')[0]
+
+    # Filter files with id under 105
+    files = [file for file in files if not (int(os.path.basename(file).split('_')[-1].split('.')[0]) <= 105)]
+
     # Load the data
     for i in range(num_files):
-        data = ParsedFile(f'/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_11{i}.csv')
+        #data = ParsedFile(f'C:\\Uni\\MDU\\EXO\\EXO1-feature_RNN\\RNNpy\\Data\\2024_4_6_TestSub20_ARM_L_{105 + i}.csv')
+        data = ParsedFile(files[i])
+
         windowed_data = WindowedData(data, 250, 190)
         windowed_inputs, windowed_classes = windowed_data.getWindows()
         inputs.extend(windowed_inputs)

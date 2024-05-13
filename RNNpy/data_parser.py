@@ -2,7 +2,6 @@ import csv
 from os import makedirs
 from os.path import basename
 from matplotlib import pyplot as plt
-import numpy as np
 
 DATA_SPLITS = 8 # Number of splits to divide the data for plotting
 

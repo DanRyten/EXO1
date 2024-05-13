@@ -31,5 +31,5 @@ problem = {
 optimizer = GWO.OriginalGWO(epoch=10, pop_size=20)
 
 # Optimize RNN parameters using GWO
-optimizer.solve(problem, mode="thread", n_workers=5)
+optimizer.solve(problem)
 print(f"Best solution: {optimizer.g_best.solution}, Best fitness: {optimizer.g_best.target.fitness}")
