@@ -8,6 +8,8 @@ torch = "*"
 mealpy = "==3.0.1"
 matplotlib = "*"
 numpy = "*"
+torchviz = "*"
+setuptools = "*"
 
 [dev-packages]
 
