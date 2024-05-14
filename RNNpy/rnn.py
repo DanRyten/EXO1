@@ -1,11 +1,12 @@
 import torch
 import torch.nn as nn
+import random
 import glob
 import os
 from data_parser import ParsedFile
 from windowed_data import WindowedData
 
-FILES_TO_LOAD = 76
+TRAINING_FILES = 75
 
 class RNN(nn.Module):
     '''RNN model with 1 fully connected input layer, 2 LSTM layers, and 1 fully connected output layer.'''
@@ -91,6 +92,7 @@ def objective_function(solution):
     hidden_size = 1000   
     output_classes = 4  
 
+    creation_params = [input_size, hidden_size, lstm_size1, lstm_size2, output_classes]
     model = RNN(input_size, hidden_size, lstm_size1, lstm_size2, output_classes)
     model.to(device)
 
@@ -102,16 +104,22 @@ def objective_function(solution):
     print("Model created")
 
     # Get the inputs and labels and convert them to tensors
-    windowed_inputs, windowed_labels = get_inputs(FILES_TO_LOAD)
-    inputs_tensor = torch.tensor(windowed_inputs, dtype=torch.float32).to(device)
-    labels_tensor = torch.tensor(windowed_labels, dtype=torch.long).to(device)
+    windowed_train_inputs, windowed_train_labels, windowed_test_inputs, windowed_test_labels = get_inputs()
+    train_inputs_tensor = torch.tensor(windowed_train_inputs, dtype=torch.float32).to(device)
+    train_labels_tensor = torch.tensor(windowed_train_labels, dtype=torch.long).to(device)
+
+    test_inputs_tensor = torch.tensor(windowed_test_inputs, dtype=torch.float32).to(device)
+    test_labels_tensor = torch.tensor(windowed_test_labels, dtype=torch.long).to(device)
 
     # Create a PyTorch dataset
-    dataset = torch.utils.data.TensorDataset(inputs_tensor, labels_tensor)
+    train_dataset = torch.utils.data.TensorDataset(train_inputs_tensor, train_labels_tensor)
+    test_dataset = torch.utils.data.TensorDataset(test_inputs_tensor, test_labels_tensor)
 
     # Create a PyTorch dataloader
     #dataloader = torch.utils.data.DataLoader(dataset, batch_size=int(batch_size), shuffle=False)
-    dataloader = torch.utils.data.DataLoader(dataset, shuffle=False)
+    train_dataloader = torch.utils.data.DataLoader(train_dataset, shuffle=False)
+    test_dataloader = torch.utils.data.DataLoader(test_dataset, shuffle=False)
+
 
     print("Data loaded.")
     
@@ -120,7 +128,7 @@ def objective_function(solution):
     # Train the model
     for epoch in range(int(num_epochs)):
         print(f'Epoch: {epoch + 1}')
-        for inputs, labels in dataloader:
+        for inputs, labels in train_dataloader:
             # Forward pass
             outputs = model(inputs)
             labels = nn.functional.one_hot(labels, num_classes=output_classes).float().squeeze().to(device)
@@ -136,46 +144,69 @@ def objective_function(solution):
     with torch.no_grad():
         model.eval()
 
-        for inputs, labels in dataloader:
+        for inputs, labels in test_dataloader:
             outputs = model(inputs)
             _, predicted = torch.max(outputs.data, 0)
             precision += 1 if [predicted == labels] else 0
 
-        precision = precision / len(windowed_labels)
+        precision = precision / len(windowed_test_labels)
     
-    print(f'Precision: {precision * 100} ({precision * len(windowed_labels)} / {len(windowed_labels)})')
+    print(f'Precision: {precision * 100} ({precision * len(windowed_test_labels)} / {len(windowed_test_labels)})')
 
     # Save the model
-    torch.save(model.state_dict(), 'EMG_RNN.pth')
+    model_id = ''
+    with open('model_id.txt', 'r+') as model_id_file:
+        lines = model_id_file.readlines()
+        if lines:
+            last_line = lines[-1]
+            previous_id = int(last_line.split(' ')[0])
+        else:
+            previous_id = 0
+        model_id = previous_id + 1
+        model_id_file.write(f'{model_id} {" ".join(map(str, creation_params))}\n')
+        
+
+    torch.save(model.state_dict(), f'EMG_RNN_{model_id}.pth')
 
     return precision
 
-def get_inputs(num_files):
+def get_inputs():
     '''
     Get the inputs and labels for the RNN model.
-    Parameters:
-        num_files: The number of files to load (starts from file id 110).
+    Returns:
+        train_inputs: The training inputs.
+        train_labels: The training labels.
+        test_inputs: The testing inputs.
+        test_labels: The testing labels.
     '''
-    inputs = []
-    labels = []
+    train_inputs = []
+    train_labels = []
+    test_inputs = []
+    test_labels = []
 
     pattern = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/*_*_*_TestSub*_ARM_*_*.csv'
     files = glob.glob(pattern)
 
-    a = os.path.basename(files[0]).split('_')[-1].split('.')[0]
-
     # Filter files with id under 105
     files = [file for file in files if not (int(os.path.basename(file).split('_')[-1].split('.')[0]) <= 105)]
+    random.shuffle(files)
 
     # Load the data
-    for i in range(num_files):
-        #data = ParsedFile(f'C:\\Uni\\MDU\\EXO\\EXO1-feature_RNN\\RNNpy\\Data\\2024_4_6_TestSub20_ARM_L_{105 + i}.csv')
-        data = ParsedFile(files[i])
+    for file in files[:TRAINING_FILES]:
+        data = ParsedFile(file)
 
         windowed_data = WindowedData(data, 250, 190)
         windowed_inputs, windowed_classes = windowed_data.getWindows()
-        inputs.extend(windowed_inputs)
-        labels.extend(windowed_classes)
+        train_inputs.extend(windowed_inputs)
+        train_labels.extend(windowed_classes)
 
-    return inputs, labels
+    for file in files[TRAINING_FILES:]:
+        data = ParsedFile(file)
+
+        windowed_data = WindowedData(data, 250, 190)
+        windowed_inputs, windowed_classes = windowed_data.getWindows()
+        test_inputs.extend(windowed_inputs)
+        test_labels.extend(windowed_classes)
+
+    return train_inputs, train_labels, test_inputs, test_labels
         
