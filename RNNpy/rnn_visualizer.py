@@ -2,7 +2,7 @@ import torch
 from torchviz import make_dot
 from rnn import get_inputs, RNN
 
-MODEL_ID = 2
+MODEL_ID = 1
 
 model_file = f'models/EMG_RNN_{MODEL_ID}.pth'
 
@@ -10,8 +10,8 @@ model_file = f'models/EMG_RNN_{MODEL_ID}.pth'
 print(f'Loading model parameters...')
 with open('models/model_id.txt', 'r') as file:
     lines = file.readlines()
-    line = lines[MODEL_ID - 1].strip()
-    parameters = line.split()[1:]
+    line = lines[MODEL_ID].strip()
+    parameters = line.split()[1:6]
 
 # Create the base model and load the weights
 print('Creating model...')
@@ -23,6 +23,6 @@ model.eval()
 print('Plotting model...')
 _, _, inputs, _ = get_inputs()
 inputs = torch.tensor(inputs, dtype=torch.float32)
-outputs = model(inputs)
+outputs, _ = model(inputs)
 
 make_dot(outputs, params=dict(model.named_parameters())).render(f'EMG_RNN_{MODEL_ID}', directory='plots', format='png', cleanup=True)

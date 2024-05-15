@@ -3,15 +3,16 @@ import torch.nn as nn
 import random
 import glob
 import os
+from timeit import default_timer as timer
 from data_parser import ParsedFile
 from windowed_data import WindowedData
 
-TRAINING_FILES = 75
+TRAINING_FILES = 90
 
 class RNN(nn.Module):
     '''RNN model with 1 fully connected input layer, 2 LSTM layers, and 1 fully connected output layer.'''
 
-    def __init__(self, input_size, hidden_size, lstm_size1, lstm_size2, output_classes):
+    def __init__(self, input_size, hidden_size, lstm_size1, lstm_size2, output_classes, device=torch.device('cpu')):
         '''
         Initialize the RNN model.
         Parameters:
@@ -35,6 +36,12 @@ class RNN(nn.Module):
         self.lstm1 = nn.LSTM(int(hidden_size), int(lstm_size1), batch_first=True)
         self.lstm2 = nn.LSTM(int(lstm_size1), int(lstm_size2), batch_first=True)
 
+        # Initialize hidden states with zeroes
+        self.h0_1 = torch.zeros(1, int(self.lstm_size1)).to(device)
+        self.c0_1 = torch.zeros(1, int(self.lstm_size1)).to(device)
+        self.h0_2 = torch.zeros(1, int(self.lstm_size2)).to(device)
+        self.c0_2 = torch.zeros(1, int(self.lstm_size2)).to(device)
+
         # Define the output layer
         self.output_layer = nn.Linear(int(lstm_size2), int(output_classes))
 
@@ -45,20 +52,20 @@ class RNN(nn.Module):
         Forward pass through the RNN model.
         Parameters:
             x: The input data.
+        Returns:
+            out: The output of the model.
+            inference_time: The time it took to infer the output.
         '''
+        inference_time = 0
 
-        # Initialize hidden states with zeroes
-        h0_1 = torch.zeros(1, int(self.lstm_size1)).to(x.device)
-        c0_1 = torch.zeros(1, int(self.lstm_size1)).to(x.device)
-        h0_2 = torch.zeros(1, int(self.lstm_size2)).to(x.device)
-        c0_2 = torch.zeros(1, int(self.lstm_size2)).to(x.device)
+        time_start = timer()
 
         # Forward through input layer
         out = self.input_layer(x)
 
         # Forward through LSTM layers
-        out, _ = self.lstm1(out, (h0_1, c0_1))
-        out, _ = self.lstm2(out, (h0_2, c0_2))
+        out, _ = self.lstm1(out, (self.h0_1, self.c0_1))
+        out, _ = self.lstm2(out, (self.h0_2, self.c0_2))
 
         out = out[-1, :]
 
@@ -67,7 +74,11 @@ class RNN(nn.Module):
 
         out = torch.nn.functional.softmax(out, dim=0)
 
-        return out
+        time_end = timer()
+
+        inference_time = time_end - time_start
+
+        return out, inference_time
 
 def objective_function(solution):
     '''
@@ -93,7 +104,7 @@ def objective_function(solution):
     output_classes = 4  
 
     creation_params = [input_size, hidden_size, lstm_size1, lstm_size2, output_classes]
-    model = RNN(input_size, hidden_size, lstm_size1, lstm_size2, output_classes)
+    model = RNN(input_size, hidden_size, lstm_size1, lstm_size2, output_classes, device)
     model.to(device)
 
     # Define the loss function and optimizer
@@ -120,17 +131,15 @@ def objective_function(solution):
     train_dataloader = torch.utils.data.DataLoader(train_dataset, shuffle=False)
     test_dataloader = torch.utils.data.DataLoader(test_dataset, shuffle=False)
 
-
     print("Data loaded.")
     
-    print("Model started.")
-
     # Train the model
+    print("Training started.")
     for epoch in range(int(num_epochs)):
         print(f'Epoch: {epoch + 1}')
         for inputs, labels in train_dataloader:
             # Forward pass
-            outputs = model(inputs)
+            outputs, _ = model(inputs)
             labels = nn.functional.one_hot(labels, num_classes=output_classes).float().squeeze().to(device)
             loss = criterion(outputs, labels)
 
@@ -140,33 +149,37 @@ def objective_function(solution):
             optimizer.step()
     
     # Evaluate the model
+    print("Evaluation started.")
     precision = 0
     with torch.no_grad():
         model.eval()
 
+        avg_inference_time = 0
         for inputs, labels in test_dataloader:
-            outputs = model(inputs)
+            outputs, inference_time = model(inputs)
+            avg_inference_time += inference_time
             _, predicted = torch.max(outputs.data, 0)
             precision += 1 if [predicted == labels] else 0
 
         precision = precision / len(windowed_test_labels)
+        avg_inference_time = avg_inference_time / len(windowed_test_labels)
     
     print(f'Precision: {precision * 100} ({precision * len(windowed_test_labels)} / {len(windowed_test_labels)})')
+    print(f'Average inference time: {avg_inference_time * 1000} ms')
 
     # Save the model
     model_id = ''
-    with open('model_id.txt', 'r+') as model_id_file:
+    with open('models/model_id.txt', 'r+') as model_id_file:
         lines = model_id_file.readlines()
-        if lines:
+        if len(lines) > 2:
             last_line = lines[-1]
             previous_id = int(last_line.split(' ')[0])
         else:
             previous_id = 0
         model_id = previous_id + 1
-        model_id_file.write(f'{model_id} {" ".join(map(str, creation_params))}\n')
+        model_id_file.write(f'{model_id} {" ".join(map(str, creation_params))} {precision} {avg_inference_time * 1000}\n')
         
-
-    torch.save(model.state_dict(), f'EMG_RNN_{model_id}.pth')
+    torch.save(model.state_dict(), f'models/EMG_RNN_{model_id}.pth')
 
     return precision
 

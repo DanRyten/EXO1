@@ -2,7 +2,7 @@ import torch
 import csv
 from rnn import RNN
 
-MODEL_ID = 2
+MODEL_ID = 1
 
 model_file = f'models/EMG_RNN_{MODEL_ID}.pth'
 
@@ -10,8 +10,8 @@ model_file = f'models/EMG_RNN_{MODEL_ID}.pth'
 print(f'Loading model parameters...')
 with open('models/model_id.txt', 'r') as file:
     lines = file.readlines()
-    line = lines[MODEL_ID - 1].strip()
-    parameters = line.split()[1:]
+    line = lines[MODEL_ID].strip()
+    parameters = line.split()[1:6]
 
 # Create the base model and load the weights
 print('Creating model...')
