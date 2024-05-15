@@ -1,5 +1,13 @@
 import os
 
+def remove_metadata(file_path):
+    with open(file_path, 'r+') as file:
+        lines = file.readlines()
+        lines = lines[5:]
+        file.seek(0)
+        file.writelines(lines)
+        file.truncate()
+
 def remove_undefined_lines(file_path):
     with open(file_path, 'r+') as file:
         # Move the cursor to the end of the file
@@ -42,6 +50,7 @@ def process_folder_files(folder_path):
     for file in files:
         if file.endswith('.csv'):
             file_path = os.path.join(folder_path, file)
+            remove_metadata(file_path)
             remove_undefined_lines(file_path)
 
 

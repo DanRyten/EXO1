@@ -17,7 +17,7 @@ class ParsedFile:
             filename: The path of the csv file to parse.
         '''
         self.filename = filename
-        self.metadata, self.inputs_c1, self.inputs_c2, self.classes = parse_datafile(filename)
+        self.inputs_c1, self.inputs_c2, self.classes = parse_datafile(filename)
         self.inputs_c1 = [float(input) for input in self.inputs_c1]
         self.inputs_c2 = [float(input) for input in self.inputs_c2]
         self.classes = [int(cls) for cls in self.classes]
@@ -61,26 +61,15 @@ def parse_datafile(filename):
     Parameters:
         filename: The path of the csv file to parse.
     Returns:
-        metadata: A dictionary containing the metadata of the file.
         inputs_c1: A list containing the inputs from channel 1.
         inputs_c2: A list containing the inputs from channel 2.
         classes: A list containing the classes.
     '''
-    metadata = {}
     inputs_c1 = []
     inputs_c2 = []
     classes = []
     with open(filename) as datafile:
         reader = csv.reader(datafile, delimiter=';')
-
-        # Read metadata
-        for _ in range(4):
-            line = next(reader)
-            key, value = line[0].split(':')
-            metadata[key.strip()] = value.strip()
-
-        # Skip data type line
-        next(reader)
 
         # Read data
         for row in reader:
@@ -88,7 +77,7 @@ def parse_datafile(filename):
             inputs_c2.append(row[2])
             classes.append(row[-1])
 
-    return metadata, inputs_c1, inputs_c2, classes
+    return inputs_c1, inputs_c2, classes
 
 # Test
 #data1 = ParsedFile('/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/2024_4_6_TestSub20_ARM_L_119.csv')
