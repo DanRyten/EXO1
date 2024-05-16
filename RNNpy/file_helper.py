@@ -39,7 +39,7 @@ def remove_undefined_lines(file_path):
             fourth_last_line = file.readline()
             
             # Check if 'undefined' exists in the second column of both lines
-            if 'undefined;' in second_last_line and 'undefined;' in last_line:
+            if 'undefined;' in second_last_line or 'undefined;' in last_line or 'undefined' in third_last_line or 'undefined' in fourth_last_line:
                 # Truncate the file
                 file.truncate(last_four_line_positions[-1])
 
@@ -54,5 +54,5 @@ def process_folder_files(folder_path):
             remove_undefined_lines(file_path)
 
 
-folder_path = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/'
+folder_path = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/Fixed_Data/'
 process_folder_files(folder_path)

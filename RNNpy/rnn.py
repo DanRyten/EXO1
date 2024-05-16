@@ -172,7 +172,7 @@ def objective_function(solution):
     with open('models/model_id.txt', 'r+') as model_id_file:
         lines = model_id_file.readlines()
         if len(lines) > 2:
-            last_line = lines[-1]
+            last_line = lines[-2]
             previous_id = int(last_line.split(' ')[0])
         else:
             previous_id = 0
@@ -197,7 +197,7 @@ def get_inputs():
     test_inputs = []
     test_labels = []
 
-    pattern = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/*_*_*_TestSub*_ARM_*_*.csv'
+    pattern = '/home/fer/Uni/Erasmus/EXO/EXO-Data-Repository/Fixed_Data/*_*_*_TestSub*_ARM_*_*.csv'
     files = glob.glob(pattern)
 
     # Filter files with id under 105
