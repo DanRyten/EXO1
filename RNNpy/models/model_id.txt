@@ -1,2 +1,2 @@
 ID;InputSize;HiddenSize;LSTM1Size;LSTM2Size;OutputClasses;Precision;AvgInferenceTime
-1 2000 1000 15 10 4 1.0 0.3420517292843187
+1 2000 1000 15 8 4 1.0 0.35254714718650687
