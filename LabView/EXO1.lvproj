@@ -1792,6 +1792,9 @@ AddOutputFilter chunkFilter
 			<Item Name="RT-RNN.vi" Type="VI" URL="../RT-RNN.vi"/>
 			<Item Name="RT-Motor-Controls.vi" Type="VI" URL="../RT-Motor-Controls.vi"/>
 			<Item Name="RT-Data-in.vi" Type="VI" URL="../RT-Data-in.vi"/>
+			<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
+			<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
+			<Item Name="RT-Tanh.vi" Type="VI" URL="../RT-Tanh.vi"/>
 			<Item Name="Dependencies" Type="Dependencies">
 				<Item Name="vi.lib" Type="Folder">
 					<Item Name="CANStatusToError.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStatusToError.vi"/>
