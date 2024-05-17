@@ -19,7 +19,57 @@ Measurement data is acquired using the Digilent Waveforms program. In Waveforms 
 0=resting, 1= up, 2= static hold, 3=down. With the use of a red and green Led lights, the user gathering the data would move depending on which light was glowing 
 
 
-\subsection{RNN lstm}
+\subsection{\acrfull{rnn}}
+With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction we chose to use a \acrshort{rnn} as our AI model.
+Since the purpose of the project is to end with a working exoskeleton based on the RoboRIO system, an embedded solution had to be found. This resulted
+in two different \acrshort{rnn} implementations for the same model:
+\begin{itemize}
+
+    \item \textbf{Python implementation:} The first implementation was done using Python and the PyTorch library. This implementation was used to train the model, test its accuracy and extract its parameters.
+    
+    \item \textbf{LabView implementation:} The second implementation was done using LabView and the RoboRIO system. This implementation was used to import the python parameters to use the \acrshort{rnn} in a real-time scenario.
+
+\end{itemize}
+
+Before going through with implementing the model, a design was made. The final model is based on the work of \cite{RNNEMG} as their \acrfull{lstm} implementation provided promising results both in accuracy and
+inference time. The model consists of three layers:
+\begin{itemize}
+
+    \item Input layer
+
+    \item First \acrshort{lstm} layer
+
+    \item Second \acrshort{lstm} layer
+    
+    \item Output layer
+
+\end{itemize}
+
+\cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each of the \acrshort{lstm} layers, the learning rate and the number of epochs in the training process
+which were then optimized by a \acrfull{gwo} algorithm for their specific dataset. However, due to hardware restrictions, running such optimizer was not possible. Instead, the parameters were
+chosen by trial and error, process during which we realized that the model provided a perfect accuracy for our dataset leading to the conclussion that the number of epochs could be reduced to 1 and
+the final model would be chosen by the one that provided the lowest inference time. Figure \ref{fig:rnn_struct} shows the structure of our final model after the selection process and table \ref{table:rnn_params} shows the parameters used.
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.25]{images/rnn_struct.png}
+    \caption{Structure of the final \acrshort{rnn} model}
+    \label{fig:rnn_struct}
+\end{figure}
+
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|}
+    \hline
+    \textbf{Parameter} & \textbf{Value} \\ \hline
+    Number of nodes in the first \acrshort{lstm} layer & 15 \\ \hline
+    Number of nodes in the second \acrshort{lstm} layer & 8 \\ \hline
+    Learning rate & 0.00502 \\ \hline
+    Number of epochs & 1 \\ \hline
+    \end{tabular}
+    \caption{Parameters of the \acrshort{rnn} model}
+    \label{table:rnn_params}
+\end{table}
 
 \subsection{labview}
 
