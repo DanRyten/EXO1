@@ -14,9 +14,11 @@
 %repeated by someone else.
 
 \subsection{Signal aqusition}
-With a setup consisting of a Digilent Analog Discovery studio measurement device, two Myoware muscle sensor kits, various weights from two kilograms to ten kilograms and a resistance band.
-Measurement data is acquired using the Digilent Waveforms program. In Waveforms a script was created with javascript code where data is labeled automatically from 0-3 with each state representing a different position,
-0=resting, 1= up, 2= static hold, 3=down. With the use of a red and green Led lights, the user gathering the data would move depending on which light was glowing 
+A setup consisting of a Digilent Analog Discovery studio measurement device, two Myoware muscle sensor kits, various weights from two kilograms to ten kilograms and a resistance band was used during the signal acquisition.
+When using the Myoware sensors it is connected to the Analog Discovery oscilloscopes, ground and a 3.3 voltage input. Two oscilloscopes are connected to the two Myoware sensors one for the bicep and one for the tricep.
+Measurement data is acquired using the Digilent Waveforms program. In Waveforms a script was created with javascript code where data is labeled from 0-3 with each state representing a different action,
+0=resting, 1= up, 2= static hold, 3=down. With the use of a red and green LED light, the user connected to the Myoware and gathered the data starts the script and then picks the following options, 
+which arm is used, what weight and if the weight going up or down to start with.      
 
 
 \subsection{\acrfull{rnn}}
