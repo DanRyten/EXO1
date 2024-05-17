@@ -92,7 +92,7 @@ AddOutputFilter chunkFilter
 				<Item Name="Transceiver Sleep Mode.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/Transceiver Sleep Mode.vi"/>
 			</Item>
 			<Item Name="support - acquire data.vi" Type="VI" URL="/&lt;resource&gt;/plugins/NewDialogFiles/ProjectWizards/RTNPA/New Projects/support - acquire data.vi"/>
-			<Item Name="target - single rate.vi" Type="VI" URL="../../../../LabVIEW Data/RT-Test/target - single rate.vi"/>
+			<Item Name="target - single rate.vi" Type="VI" URL="../target - single rate.vi"/>
 			<Item Name="Chassis" Type="roboRIO Chassis">
 				<Property Name="crio.ProgrammingMode" Type="Str">fpga</Property>
 				<Property Name="crio.ResourceID" Type="Str">RIO0</Property>
@@ -1855,6 +1855,7 @@ AddOutputFilter chunkFilter
 				<Item Name="NiFpgaLv.dll" Type="Document" URL="NiFpgaLv.dll">
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
+				<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
 			</Item>
 			<Item Name="Build Specifications" Type="Build"/>
 		</Item>
