@@ -1795,6 +1795,9 @@ AddOutputFilter chunkFilter
 			<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
 			<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
 			<Item Name="RT-Tanh.vi" Type="VI" URL="../RT-Tanh.vi"/>
+			<Item Name="RT-LTSM-Layer.vi" Type="VI" URL="../RT-LTSM-Layer.vi"/>
+			<Item Name="RT-Init.vi" Type="VI" URL="../RT-Init.vi"/>
+			<Item Name="RT-Terminate.vi" Type="VI" URL="../RT-Terminate.vi"/>
 			<Item Name="Dependencies" Type="Dependencies">
 				<Item Name="vi.lib" Type="Folder">
 					<Item Name="CANStatusToError.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStatusToError.vi"/>
