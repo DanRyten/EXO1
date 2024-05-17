@@ -1,6 +1,7 @@
 import torch
 import csv
 from rnn import RNN
+from csv_to_xml import convert_to_xml
 
 MODEL_ID = 1
 
@@ -31,3 +32,6 @@ with open(csv_file, 'w', newline='') as file:
         writer.writerow(param.flatten())
 
 print(f'Parameters saved to {csv_file}')
+
+convert_to_xml(csv_file, f'models/EMG_RNN_{MODEL_ID}_parameters.xml')
+print(f'Parameters saved to models/EMG_RNN_{MODEL_ID}_parameters.xml')
