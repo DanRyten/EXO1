@@ -1856,6 +1856,8 @@ AddOutputFilter chunkFilter
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
 				<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
+				<Item Name="RT-ANN-Node.vi" Type="VI" URL="../RT-ANN-Node.vi"/>
+				<Item Name="RT-Mode-Selection.vi" Type="VI" URL="../RT-Mode-Selection.vi"/>
 			</Item>
 			<Item Name="Build Specifications" Type="Build"/>
 		</Item>
