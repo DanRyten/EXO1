@@ -61,3 +61,4 @@ dkms.conf
 *.blg
 *.fls
 LaTeX/main.pdf
+LabView/EXO1.aliases
