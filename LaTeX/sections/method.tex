@@ -85,16 +85,17 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
     \label{table:rnn_params}
 \end{table}
 
-\subsection{Python implementation}
-The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities to create and train the model
-while using LSTM layers. The model runs once over the training set, then it is tested over the test set where the accuracy and average inference
-time are calculated. After the model is trained and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
+\subsection{Python Implementation}
+The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
+to create and train the model while using LSTM layers. The model runs once over the training set, then it is 
+tested over the test set where the accuracy and average inferencetime are calculated. After the model is trained 
+and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
+This Python implementation also contains scripts both for parsing the data files and for windowing the data in 
+order to have it prepared for the model. Originaly, a script using the \acrshort{gwo} algorithm was implemented 
+to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
+used and instead a different script with a manual parameter selection was used.
 
-This Python implementation also contains scripts both for parsing the data files and for windowing the data in order to have it prepared for the model.
-Originaly, a script using the \acrshort{gwo} algorithm was implemented to optimize the parameters of the model, however, due to the limitations mentioned before,
-this script was not used and instead a different script with a manual parameter selection was used.
-
-\subsection{labview}
+\subsection{Labview}
 
 What we have done so far: 
 
