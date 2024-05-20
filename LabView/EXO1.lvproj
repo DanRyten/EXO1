@@ -80,18 +80,28 @@ AddOutputFilter chunkFilter
 			<Property Name="target.WebServer.ViAccess" Type="Str">+*</Property>
 			<Property Name="target.webservices.SecurityAPIKey" Type="Str">PqVr/ifkAQh+lVrdPIykXlFvg12GhhQFR8H9cUhphgg=:pTe9HRlQuMfJxAG6QCGq7UvoUpJzAzWGKy5SbZ+roSU=</Property>
 			<Property Name="target.webservices.ValidTimestampWindow" Type="Int">15</Property>
-			<Item Name="NI-Embedded CAN" Type="Folder">
-				<Item Name="subVIs" Type="Folder">
-					<Item Name="NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi"/>
+			<Item Name="Unused" Type="Folder">
+				<Item Name="NI-Embedded CAN" Type="Folder">
+					<Item Name="subVIs" Type="Folder">
+						<Item Name="NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi"/>
+					</Item>
+					<Item Name="CAN Frame Input Output - single port.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Output - single port.vi"/>
+					<Item Name="CAN Frame Input Stream - with hardware filter.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream - with hardware filter.vi"/>
+					<Item Name="CAN Frame Input Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream.vi"/>
+					<Item Name="CAN Frame Output - event based.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output - event based.vi"/>
+					<Item Name="CAN Frame Output Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output Stream.vi"/>
+					<Item Name="Transceiver Sleep Mode.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/Transceiver Sleep Mode.vi"/>
 				</Item>
-				<Item Name="CAN Frame Input Output - single port.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Output - single port.vi"/>
-				<Item Name="CAN Frame Input Stream - with hardware filter.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream - with hardware filter.vi"/>
-				<Item Name="CAN Frame Input Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream.vi"/>
-				<Item Name="CAN Frame Output - event based.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output - event based.vi"/>
-				<Item Name="CAN Frame Output Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output Stream.vi"/>
-				<Item Name="Transceiver Sleep Mode.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/Transceiver Sleep Mode.vi"/>
+				<Item Name="support - acquire data.vi" Type="VI" URL="/&lt;resource&gt;/plugins/NewDialogFiles/ProjectWizards/RTNPA/New Projects/support - acquire data.vi"/>
 			</Item>
-			<Item Name="support - acquire data.vi" Type="VI" URL="/&lt;resource&gt;/plugins/NewDialogFiles/ProjectWizards/RTNPA/New Projects/support - acquire data.vi"/>
+			<Item Name="First Layer" Type="Folder">
+				<Item Name="New Folder (2)" Type="Folder"/>
+				<Item Name="RT-Init.vi" Type="VI" URL="../RT-Init.vi"/>
+				<Item Name="RT-Data-in.vi" Type="VI" URL="../RT-Data-in.vi"/>
+				<Item Name="RT-RNN.vi" Type="VI" URL="../RT-RNN.vi"/>
+				<Item Name="RT-Mode-Selection.vi" Type="VI" URL="../RT-Mode-Selection.vi"/>
+				<Item Name="RT-Terminate.vi" Type="VI" URL="../RT-Terminate.vi"/>
+			</Item>
 			<Item Name="target - single rate.vi" Type="VI" URL="../target - single rate.vi"/>
 			<Item Name="Chassis" Type="roboRIO Chassis">
 				<Property Name="crio.ProgrammingMode" Type="Str">fpga</Property>
@@ -1789,15 +1799,12 @@ AddOutputFilter chunkFilter
 					</Item>
 				</Item>
 			</Item>
-			<Item Name="RT-RNN.vi" Type="VI" URL="../RT-RNN.vi"/>
 			<Item Name="RT-Motor-Controls.vi" Type="VI" URL="../RT-Motor-Controls.vi"/>
-			<Item Name="RT-Data-in.vi" Type="VI" URL="../RT-Data-in.vi"/>
 			<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
 			<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
 			<Item Name="RT-Tanh.vi" Type="VI" URL="../RT-Tanh.vi"/>
 			<Item Name="RT-LTSM-Layer.vi" Type="VI" URL="../RT-LTSM-Layer.vi"/>
-			<Item Name="RT-Init.vi" Type="VI" URL="../RT-Init.vi"/>
-			<Item Name="RT-Terminate.vi" Type="VI" URL="../RT-Terminate.vi"/>
+			<Item Name="XML-to-Array.vi" Type="VI" URL="../XML-to-Array.vi"/>
 			<Item Name="Dependencies" Type="Dependencies">
 				<Item Name="vi.lib" Type="Folder">
 					<Item Name="CANStatusToError.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStatusToError.vi"/>
@@ -1857,7 +1864,6 @@ AddOutputFilter chunkFilter
 				</Item>
 				<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
 				<Item Name="RT-ANN-Node.vi" Type="VI" URL="../RT-ANN-Node.vi"/>
-				<Item Name="RT-Mode-Selection.vi" Type="VI" URL="../RT-Mode-Selection.vi"/>
 			</Item>
 			<Item Name="Build Specifications" Type="Build"/>
 		</Item>
