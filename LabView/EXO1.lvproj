@@ -95,12 +95,25 @@ AddOutputFilter chunkFilter
 				<Item Name="support - acquire data.vi" Type="VI" URL="/&lt;resource&gt;/plugins/NewDialogFiles/ProjectWizards/RTNPA/New Projects/support - acquire data.vi"/>
 			</Item>
 			<Item Name="First Layer" Type="Folder">
-				<Item Name="New Folder (2)" Type="Folder"/>
+				<Item Name="Second Layer" Type="Folder">
+					<Item Name="Third Layer" Type="Folder">
+						<Item Name="Fourth Layer" Type="Folder">
+							<Item Name="RT-Tanh.vi" Type="VI" URL="../RT-Tanh.vi"/>
+						</Item>
+						<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
+						<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
+					</Item>
+					<Item Name="XML-to-Array.vi" Type="VI" URL="../XML-to-Array.vi"/>
+					<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
+					<Item Name="RT-LTSM-Layer.vi" Type="VI" URL="../RT-LTSM-Layer.vi"/>
+					<Item Name="RT-ANN-Node.vi" Type="VI" URL="../RT-ANN-Node.vi"/>
+				</Item>
 				<Item Name="RT-Init.vi" Type="VI" URL="../RT-Init.vi"/>
 				<Item Name="RT-Data-in.vi" Type="VI" URL="../RT-Data-in.vi"/>
 				<Item Name="RT-RNN.vi" Type="VI" URL="../RT-RNN.vi"/>
 				<Item Name="RT-Mode-Selection.vi" Type="VI" URL="../RT-Mode-Selection.vi"/>
 				<Item Name="RT-Terminate.vi" Type="VI" URL="../RT-Terminate.vi"/>
+				<Item Name="RT-Motor-Controls.vi" Type="VI" URL="../RT-Motor-Controls.vi"/>
 			</Item>
 			<Item Name="target - single rate.vi" Type="VI" URL="../target - single rate.vi"/>
 			<Item Name="Chassis" Type="roboRIO Chassis">
@@ -1799,12 +1812,6 @@ AddOutputFilter chunkFilter
 					</Item>
 				</Item>
 			</Item>
-			<Item Name="RT-Motor-Controls.vi" Type="VI" URL="../RT-Motor-Controls.vi"/>
-			<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
-			<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
-			<Item Name="RT-Tanh.vi" Type="VI" URL="../RT-Tanh.vi"/>
-			<Item Name="RT-LTSM-Layer.vi" Type="VI" URL="../RT-LTSM-Layer.vi"/>
-			<Item Name="XML-to-Array.vi" Type="VI" URL="../XML-to-Array.vi"/>
 			<Item Name="Dependencies" Type="Dependencies">
 				<Item Name="vi.lib" Type="Folder">
 					<Item Name="CANStatusToError.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStatusToError.vi"/>
@@ -1862,8 +1869,6 @@ AddOutputFilter chunkFilter
 				<Item Name="NiFpgaLv.dll" Type="Document" URL="NiFpgaLv.dll">
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
-				<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
-				<Item Name="RT-ANN-Node.vi" Type="VI" URL="../RT-ANN-Node.vi"/>
 			</Item>
 			<Item Name="Build Specifications" Type="Build"/>
 		</Item>
