@@ -1,7 +1,27 @@
-% \acrodef{acronym}[short name]{full name}
-\acrodef{IC}[IC]{Integrated Circuit}
-% \acrodef{svm}[SVM]{Support Vector Machine}
-\newacro{svm}[SVM]{Support Vector Machine}
-% Example use \ac{IC} for printing "Integrated Circuit (IC), use \ac{IC} again and it will print (IC)"
-% For plural use \acp{IC} for short and \aclp{IC} for long.
-% For more see: http://ftp.acc.umu.se/mirror/CTAN/macros/latex/contrib/acronym/acronym.pdf
+% \acrodef{acronym}{short name}{full name}
+\usepackage[acronym]{glossaries}
+% \newacronym{label}{abbrv}{long}
+\newacronym{IC}{IC}{Integrated Circuit}
+\newacronym{svm}{SVM}{Support Vector Machine}
+\newacronym{emg}{EMG}{Electromyography}
+\newacronym{semg}{sEMG}{Surface Electromyography}
+\newacronym{ml}{ML}{Machine Learning}
+\newacronym{knn}{KNN}{K-Nearest Neighbors}
+\newacronym{lda}{LDA}{Linear Discriminant Analysis}
+\newacronym{ann}{ANN}{Artificial Neural Network}
+\newacronym{afes}{AFES}{Assisted Function Exoskeleton}
+\newacronym{mav}{MAV}{Mean Absolute Value}
+\newacronym{rms}{RMS}{Root Mean Square}
+\newacronym{zc}{ZC}{Zero Crossing}
+\newacronym{ssc}{SSC}{Slope Sign Change}
+\newacronym{wl}{WL}{Waveform Length}
+\newacronym{ps}{PS}{Power Spectrum}
+\newacronym{mnf}{MNF}{Mean Frequency}
+\newacronym{fr}{FR}{Frequency Ratio}
+\newacronym{stft}{STFT}{Short-Time Fourier Transform}
+\newacronym{wt}{WT}{Wavelet Transform}
+% Example use \acrshort{emg} would print "EMG", \acrlong{emg} would print "Electromyography" & \acrfull{emg} woudl print " Electromyography (EMG)
+
+
+% OLD Example use \ac{IC} for printing "Integrated Circuit (IC), use \ac{IC} again and it will print (IC)"
+% For plural use \acp{IC} for short and \acrlong{IC} for long.
