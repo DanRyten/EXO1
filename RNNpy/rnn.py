@@ -7,7 +7,7 @@ from timeit import default_timer as timer
 from data_parser import ParsedFile
 from windowed_data import WindowedData
 
-TRAINING_FILES = 90
+TRAINING_FILES = 100
 
 class RNN(nn.Module):
     '''RNN model with 1 fully connected input layer, 2 LSTM layers, and 1 fully connected output layer.'''
@@ -100,7 +100,7 @@ def objective_function(solution):
 
     # Create the RNN model
     input_size = 2000  
-    hidden_size = 1000   
+    hidden_size = 250   
     output_classes = 4  
 
     creation_params = [input_size, hidden_size, lstm_size1, lstm_size2, output_classes]

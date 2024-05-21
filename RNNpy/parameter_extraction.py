@@ -3,7 +3,7 @@ import csv
 from rnn import RNN
 from csv_to_xml import convert_to_xml
 
-MODEL_ID = 1
+MODEL_ID = 2
 
 model_file = f'models/EMG_RNN_{MODEL_ID}.pth'
 
