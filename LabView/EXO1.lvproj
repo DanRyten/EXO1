@@ -1689,11 +1689,7 @@ AddOutputFilter chunkFilter
 					</Item>
 					<Item Name="Dependencies" Type="Dependencies">
 						<Item Name="vi.lib" Type="Folder">
-							<Item Name="LVFixedPointQuantizationPolicyTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/fxp/LVFixedPointQuantizationPolicyTypeDef.ctl"/>
 							<Item Name="lvSimController.dll" Type="Document" URL="/&lt;vilib&gt;/rvi/Simulation/lvSimController.dll"/>
-						</Item>
-						<Item Name="user.lib" Type="Folder">
-							<Item Name="NI I2C IP FPGA.lvlib" Type="Library" URL="/&lt;userlib&gt;/_NI I2C IP/FPGA/NI I2C IP FPGA.lvlib"/>
 						</Item>
 					</Item>
 					<Item Name="Build Specifications" Type="Build">
@@ -1814,6 +1810,8 @@ AddOutputFilter chunkFilter
 					</Item>
 				</Item>
 			</Item>
+			<Item Name="RT-XML-Array.vi" Type="VI" URL="../RT-XML-Array.vi"/>
+			<Item Name="RT-Cut-String.vi" Type="VI" URL="../RT-Cut-String.vi"/>
 			<Item Name="Dependencies" Type="Dependencies">
 				<Item Name="vi.lib" Type="Folder">
 					<Item Name="CANStatusToError.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStatusToError.vi"/>
@@ -1864,11 +1862,16 @@ AddOutputFilter chunkFilter
 					<Item Name="CANWaitInterfaceCommunicating.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWaitInterfaceCommunicating.vi"/>
 					<Item Name="CANWaitRemoteWakeup.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWaitRemoteWakeup.vi"/>
 					<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
+					<Item Name="NI_XML.lvlib" Type="Library" URL="/&lt;vilib&gt;/xml/NI_XML.lvlib"/>
+					<Item Name="Dflt Data Dir.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Dflt Data Dir.vi"/>
 				</Item>
 				<Item Name="rioembeddedcanlvapi.dll" Type="Document" URL="rioembeddedcanlvapi.dll">
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
 				<Item Name="NiFpgaLv.dll" Type="Document" URL="NiFpgaLv.dll">
+					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
+				</Item>
+				<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
 			</Item>
