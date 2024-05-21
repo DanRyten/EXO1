@@ -27,12 +27,12 @@ placed either between the bicep and triceps on the inner arm or on the elbow dep
 be more easily reached. Measurement data is acquired using the Digilent Waveforms program. In Waveforms a 
 script was created with javascript code where data is labeled from 0-3 with each state representing a 
 different action, 0=static down, 1=moving up, 2=static up, 3=moving down. Two LED lights show what 
-movement is expected from the user and the data is collected and labled accordingly. Which test subject, 
+movement is expected from the user and the data is collected and labeled accordingly. Which test subject, 
 which arm, what weight was used and what direction the weight was providing resistance in were all recorded.
 
 
 \subsection{\acrfull{rnn}}
-With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction we chose to 
+With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction, we chose to 
 use a \acrshort{rnn} as our AI model. Since the purpose of the project is to end with a working exoskeleton based 
 on the RoboRIO system, an embedded solution had to be found. This resulted in two different \acrshort{rnn} 
 implementations for the same model:
@@ -42,7 +42,7 @@ implementations for the same model:
     This implementation was used to train the model, test its accuracy and extract its parameters.
     
     \item \textbf{LabView implementation:} The second implementation was done using LabView and the RoboRIO system. 
-    This implementation was used to import the python parameters to use the \acrshort{rnn} in a real-time scenario.
+    This implementation was used to import the Python parameters to use the \acrshort{rnn} in a real-time scenario.
 
 \end{itemize}
 
@@ -63,9 +63,9 @@ of three layers:
 
 \cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
-algorithm for their specific dataset. However, due to hardware restrictions, running such optimizer was not possible. Instead, 
+algorithm for their specific dataset. However, due to hardware restrictions, running such an optimizer was not possible. Instead, 
 the parameters were chosen by trial and error, a process during which we realized that the model provided a perfect accuracy 
-for our dataset leading to the conclussion that the number of epochs could be reduced to 1 and the final model would be chosen 
+for our dataset leading to the conclusion that the number of epochs could be reduced to 1 and the final model would be chosen 
 by the one that provided the lowest inference time. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
 the selection process and table \ref{table:rnn_params} shows the parameters used.
 
@@ -93,12 +93,12 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
 \subsection{Python Implementation}
 The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
 to create and train the model while using LSTM layers. The model runs once over the training set, then it is 
-tested over the test set where the accuracy and average inferencetime are calculated. After the model is trained 
+tested over the test set where the accuracy and average inference time are calculated. After the model is trained 
 and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
 This Python implementation also contains scripts both for parsing the data files and for windowing the data in 
-order to have it prepared for the model. Originaly, a script using the \acrshort{gwo} algorithm was implemented 
+order to have it prepared for the model. Originally, a script using the \acrshort{gwo} algorithm was implemented 
 to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
-used and instead a different script with a manual parameter selection was used.
+used and instead, a different script with a manual parameter selection was used.
 
 \subsection{Labview}
 

@@ -40,11 +40,14 @@ artifacts.
     require a transformation that increases the computational cost, as it happens with the \acrfull{stft} or the \acrfull{wt}.
 \end{itemize}
 
-\subsection{\acp{rnn}}
-\acp{rnn} are a type of neural networks designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
+
+\subsection{software}
+
+\subsubsection{\acp{rnn}}
+\acp{rnn} is a type of neural network designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
 represents information about the sequence it has seen so far \cite{RNNdef}. This makes them ideal for tasks such as continuous motion prediction from \acrshort{emg} signals.
 In figure \ref{fig:rnn_basic} the basic structure of a \acrshort{rnn} can be seen.
-Researches such as \cite{RNNEMG} have shown that \acp{rnn} can be used to predict continuous motion from \acrshort{emg} signals with a degree of 
+Research such as \cite{RNNEMG} has shown that \acp{rnn} can be used to predict continuous motion from \acrshort{emg} signals with a degree of 
 accuracy as high as 98.46\%.
 
 \begin{figure}
@@ -53,6 +56,10 @@ accuracy as high as 98.46\%.
     \caption{Basic structure of a \acrshort{rnn}}
     \label{fig:rnn_basic}
 \end{figure}
+
+
+\subsubsection{Labview}
+
 
 \subsection{Related Works}
 This project is based on the work of \acrfull{afes} \cite{AFES}, which achieved a working exoskeleton that could be driven by the bicep. However, the resulting 
