@@ -1,0 +1,16 @@
+input and output layers weights:
+    - Each chunk of size = input corresponds to the weights of each neuron
+
+LSTM1 ih weights
+    - Split into 60(4*15) chunks of 250
+    - 250 weights for 4 gates for 15 nodes
+LSTM1 hh weights
+    - Split into 60(4*15) chunks of 15
+    - 15 weights? for 4 gates for 15 nodes
+
+LSTM2 ih weights
+    - Split into 32(4*8) chunks of 15
+    - 15 weights for 4 gates for 8 nodes
+LSTM2 hh weights
+    - Split into 32(4*8) chunks of 8
+    - 8 weights? for 4 gates for 8 nodes
