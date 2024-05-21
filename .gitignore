@@ -61,3 +61,7 @@ dkms.conf
 *.blg
 *.fls
 LaTeX/main.pdf
+
+# Plotted images
+RNNpy/plots/*.png
+RNNpy/__pycache__
