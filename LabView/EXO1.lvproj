@@ -80,22 +80,6 @@ AddOutputFilter chunkFilter
 			<Property Name="target.WebServer.ViAccess" Type="Str">+*</Property>
 			<Property Name="target.webservices.SecurityAPIKey" Type="Str">PqVr/ifkAQh+lVrdPIykXlFvg12GhhQFR8H9cUhphgg=:pTe9HRlQuMfJxAG6QCGq7UvoUpJzAzWGKy5SbZ+roSU=</Property>
 			<Property Name="target.webservices.ValidTimestampWindow" Type="Int">15</Property>
-			<Item Name="Unused" Type="Folder">
-				<Item Name="NI-Embedded CAN" Type="Folder">
-					<Item Name="subVIs" Type="Folder">
-						<Item Name="NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi"/>
-					</Item>
-					<Item Name="CAN Frame Input Output - single port.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Output - single port.vi"/>
-					<Item Name="CAN Frame Input Stream - with hardware filter.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream - with hardware filter.vi"/>
-					<Item Name="CAN Frame Input Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Input Stream.vi"/>
-					<Item Name="CAN Frame Output - event based.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output - event based.vi"/>
-					<Item Name="CAN Frame Output Stream.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/CAN Frame Output Stream.vi"/>
-					<Item Name="Transceiver Sleep Mode.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/Transceiver Sleep Mode.vi"/>
-				</Item>
-				<Item Name="support - acquire data.vi" Type="VI" URL="/&lt;resource&gt;/plugins/NewDialogFiles/ProjectWizards/RTNPA/New Projects/support - acquire data.vi"/>
-				<Item Name="RT-XML-Array.vi" Type="VI" URL="../RT-XML-Array.vi"/>
-				<Item Name="RT-Cut-String.vi" Type="VI" URL="../Unused VI&apos;s/RT/RT-Cut-String.vi"/>
-			</Item>
 			<Item Name="First Layer" Type="Folder">
 				<Item Name="Second Layer" Type="Folder">
 					<Item Name="Third Layer" Type="Folder">
@@ -105,7 +89,6 @@ AddOutputFilter chunkFilter
 						<Item Name="RT-LSTM.vi" Type="VI" URL="../RT-LSTM.vi"/>
 						<Item Name="RT-sigmoid.vi" Type="VI" URL="../RT-sigmoid.vi"/>
 					</Item>
-					<Item Name="XML-to-Array.vi" Type="VI" URL="../XML-to-Array.vi"/>
 					<Item Name="RT-RIOtoVolt.vi" Type="VI" URL="../RT-RIOtoVolt.vi"/>
 					<Item Name="RT-LTSM-Layer.vi" Type="VI" URL="../RT-LTSM-Layer.vi"/>
 					<Item Name="RT-ANN-Node.vi" Type="VI" URL="../RT-ANN-Node.vi"/>
@@ -1836,17 +1819,7 @@ AddOutputFilter chunkFilter
 					<Item Name="Set String Value.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set String Value.vi"/>
 					<Item Name="GetRTHostConnectedProp.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetRTHostConnectedProp.vi"/>
 					<Item Name="DialogType.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/DialogType.ctl"/>
-					<Item Name="CANFilterMode.ctl" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANFilterMode.ctl"/>
-					<Item Name="CANFilterSetting.ctl" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANFilterSetting.ctl"/>
-					<Item Name="CANSetFilterMode.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANSetFilterMode.vi"/>
-					<Item Name="CANSetFilterValue.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANSetFilterValue.vi"/>
-					<Item Name="CANStop.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANStop.vi"/>
-					<Item Name="CANWait.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWait.vi"/>
-					<Item Name="CANWaitTransmitComplete.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWaitTransmitComplete.vi"/>
-					<Item Name="CANWaitInterfaceCommunicating.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWaitInterfaceCommunicating.vi"/>
-					<Item Name="CANWaitRemoteWakeup.vi" Type="VI" URL="/&lt;vilib&gt;/RioEmbeddedCAN/RioEmbeddedCAN.llb/CANWaitRemoteWakeup.vi"/>
 					<Item Name="Error Cluster From Error Code.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Error Cluster From Error Code.vi"/>
-					<Item Name="NI_XML.lvlib" Type="Library" URL="/&lt;vilib&gt;/xml/NI_XML.lvlib"/>
 					<Item Name="Dflt Data Dir.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/file.llb/Dflt Data Dir.vi"/>
 				</Item>
 				<Item Name="rioembeddedcanlvapi.dll" Type="Document" URL="rioembeddedcanlvapi.dll">
@@ -1855,9 +1828,7 @@ AddOutputFilter chunkFilter
 				<Item Name="NiFpgaLv.dll" Type="Document" URL="NiFpgaLv.dll">
 					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 				</Item>
-				<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
-					<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
-				</Item>
+				<Item Name="NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi" Type="VI" URL="../../../../../../../Program Files (x86)/National Instruments/LabVIEW 2020/examples/NI-Embedded CAN for RIO/NI-Embedded CAN for RIO subVI - CAN Frame to Table.vi"/>
 			</Item>
 			<Item Name="Build Specifications" Type="Build"/>
 		</Item>
@@ -1872,7 +1843,9 @@ AddOutputFilter chunkFilter
 		<Property Name="server.vi.callsEnabled" Type="Bool">true</Property>
 		<Property Name="server.vi.propertiesEnabled" Type="Bool">true</Property>
 		<Property Name="specify.custom.address" Type="Bool">false</Property>
+		<Item Name="12Weights-to-4Weights.vi" Type="VI" URL="../12Weights-to-4Weights.vi"/>
 		<Item Name="Write-To-Bin.vi" Type="VI" URL="../Write-To-Bin.vi"/>
+		<Item Name="XML-to-Array.vi" Type="VI" URL="../XML-to-Array.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
 			<Item Name="vi.lib" Type="Folder">
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
@@ -1897,6 +1870,7 @@ AddOutputFilter chunkFilter
 				<Item Name="Longest Line Length in Pixels.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Longest Line Length in Pixels.vi"/>
 				<Item Name="LVBoundsTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVBoundsTypeDef.ctl"/>
 				<Item Name="LVRectTypeDef.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/miscctls.llb/LVRectTypeDef.ctl"/>
+				<Item Name="NI_XML.lvlib" Type="Library" URL="/&lt;vilib&gt;/xml/NI_XML.lvlib"/>
 				<Item Name="Not Found Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Not Found Dialog.vi"/>
 				<Item Name="Search and Replace Pattern.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Search and Replace Pattern.vi"/>
 				<Item Name="Set Bold Text.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Set Bold Text.vi"/>
@@ -1907,6 +1881,9 @@ AddOutputFilter chunkFilter
 				<Item Name="Three Button Dialog.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Three Button Dialog.vi"/>
 				<Item Name="Trim Whitespace.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/Trim Whitespace.vi"/>
 				<Item Name="whitespace.ctl" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/whitespace.ctl"/>
+			</Item>
+			<Item Name="DOMUserDefRef.dll" Type="Document" URL="DOMUserDefRef.dll">
+				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
 		</Item>
 		<Item Name="Build Specifications" Type="Build"/>
