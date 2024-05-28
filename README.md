@@ -31,10 +31,30 @@ Any files with the prefix RT-* is part of and deployed toward the Realtime secti
 
 - RT-Motor-Controls.vi: This takes a u64 input, splits it into 8 u8 to fit the bitstream and pushes it to a CAN-Write module then reads for an ACK.
 
+- RT-RIO-to-Volt.vi: This a help function to translate (Assumed to be linearly) from the Roborio FPGA output to Volts. Calibrated by 4000:5Volts
 
+- RT-LSTM-Layer.vi: This function is a loop to iterate through the LSTM layer and saving each nodes output states and feeds them back in the next iteration
+
+- RT-ANN-Node: This function loops through the input layer where the last collumn is the bias
+
+- RT-Read-from-Bin: This is a help function inside "RT-init.vi" to read the weight matrices from a Binary File
+
+- RT-LSTM.vi: This is the core part of the RNN with each node containing a "input gate", "output gate" & a "forget gate"
+
+- RT-sigmoid.vi: A simple help function to faciliate a sigmoid curve outside of an expression node
+
+- RT-Tanh.vi: A simple help function to faciliate a tanh curve outside of an expression node 
 
 ## FPGA
+Any files with the prefix FPGA-* is part of and deployed toward the FPGA section of the RoboRIO. 
 
+- FPGA-DataIn: A simple setup to start reading from the AnalogIn nodes on the FPGA
 
 ## Preproccessing
+Any files lacking a prefix is to be ran on a regular machine instead of the embedded system
 
+- 12Weights-to-4Weights.vi: A half implemented attempt to translate our XML created weights to the weights used elsewhere in the system
+
+- Write-To-Bin.vi: This takes in the four weight matrices and turns them into Binary files to be read later
+
+- XML-to-Array.vi: Parses our XML file into Arrays
