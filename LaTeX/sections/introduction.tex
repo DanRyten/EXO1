@@ -1,68 +1,34 @@
 \section{Introduction}
 \label{section:intro}
-%\blindtext
 
-THESE ARE NEEDED FOR NOW. REMOVE LATER!!!! \cite{IEEEtran, IEEEtranformatexample, webpage, FundConDep, exampleofjournalarticle, exampleofconferencepaper}
-\ac{svm} \cite{exampleofconferencepaper}".
+Physically demanding work can leave people with such severe strain that they have to work less or stop working entirely in 
+their field\cite{WorkDemands}. The burdens they are placed under can be alleviated using exoskeletons but they are often 
+prohibitively expensive both from a material cost and since most are person-specific. The majority of commercially available 
+exoskeletons are passive providing no extra power of their own but simply redistributing the load instead. The goal of this 
+project is to advance the possibility of commercially viable exoskeletons that can assist workers in these fields by aiding 
+them in bending and extending their arms as well as holding them in place.
 
-Introduction:
-    Introduce the reader:
-        What are exoskeletons?
-        What is EMG?
+\subsection{Problem Formulation}
+The goals of this project are here listed in descending order of priority:
+\begin{itemize}
+        
+    \item RQ1: Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
 
-    Motivation:
-        Static struggles!
-            Medical work:
-                Assitance while having to hold patients in exact positions for long durations during surgeries
+    \item RQ2: Can the elbow actuator drive at variable speeds related to the effort expended by the wearer?
 
-            Industrial work:
-                Assitance while working in awkward positions like overhead or under the hood of a car for example
+    \item RQ3: Can the latency of the actuator acting be reduced?
 
-            Agricultural work:
-                Assitance while working overhead to pick for example mangos
-            
-            All above:
-                Helps while carrying stuff
-
-    Describe the subject:
-        Idk, stuff?
-
-    Aim of the thesis work:
-        Problem formulation: %This sounds a lot like aim of the thesis work so I added it here
-            Research questions:
-                1.	Can the exoskeleton be driven based off of both the bicep and triceps? (So that it can be put at rest at a specified position)
-
-                2.	Can the exoskeleton be made to drive at variable speeds?
-
-                3.	Can the exoskeleton be made wearable?
-
-            Problem:
-                
-
-            Scope:
-            
-            Relevance: %this is mostly motivation I guess
+\end{itemize}
+RQ1 is the item of most import since that would allow workers to accomplish static tasks instead of only getting dynamic assistance 
+allowing for the user to functionally rest while at work. RQ2 would allow the user to start and stop more carefully so that they 
+find the exact position they wish to hold more easily, while RQ3 would allow for the exoskeleton to be used in real-time.
+This would be accomplished through additional sensors, a different choice of AI method as well as updated hardware and a different 
+choice of programming language.
 
 
-Background: 
-    Short background on the research field:
 
-    Related work:
-        Previous groups work
-
-    Research platforms/groups:
-
-    State of the art:
-
-
-    This will present an overview of the project and what is done in a short intro
-
-
-Research questions:
-
-1.	Can the exoskeleton be driven based off of both the bicep and triceps? (So that it can be put at rest at a specified position)
-
-2.	Can the exoskeleton be made to drive at variable speeds?
-
-3.	Can the exoskeleton be made wearable?
-
+\subsubsection{Limitations}
+This project was subject to several restraints from the beginning. The overarching one was the limited time of 8 weeks which was
+exasperated by the need to procure sensors, DAQ systems and applicable software. This factor mainly delayed the data acquisition. 
+Although the exoskeleton was assembled with degrees of freedom only the elbow joint was used. This was due to the larger complexity 
+of a shoulder movement requiring additional sensors and a larger system on all fronts.

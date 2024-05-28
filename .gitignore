@@ -61,5 +61,11 @@ dkms.conf
 *.blg
 *.fls
 LaTeX/main.pdf
+
+# LabView Files
 LabView/EXO1.aliases
 *.aliases
+
+# Plotted images
+RNNpy/plots/*.png
+RNNpy/__pycache__
