@@ -1,0 +1,1 @@
+ID;InputSize;HiddenSize;LSTM1Size;LSTM2Size;OutputClasses;Precision
