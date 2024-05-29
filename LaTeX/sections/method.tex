@@ -105,8 +105,6 @@ used and instead, a different script with a manual parameter selection was used.
 The collected data was preprocessed before being fed into the model. Firstly, the data files were mixed in order to 
 avoid having the model learn patterns based on the state of the muscles of the test subject or on the test subject itself.
 
-\subsection{Labview}
-
 \subsection{Labview Implementation}
 The LabView implementation was multifacated, with three destinct parts. The first being the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
 to be read by the embedded system. The second being data acquisition done on the \acrfull(FPGA) which opens two ports and reads the voltage continuously. The third one being the Real Time system which
