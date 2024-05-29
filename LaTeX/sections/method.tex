@@ -94,16 +94,28 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
 
 \subsection{Python Implementation}
 The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
-to create and train the model while using LSTM layers. The model runs once over the training set, then it is 
-tested over the test set where the accuracy and average inference time are calculated. After the model is trained 
+to create and train the model while using LSTM layers. The model runs over the training set and for every epoch
+it is validated to test its accuracy in the validation set and for every class in the validation set.After the model is trained 
 and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
 Originally, a script using the \acrshort{gwo} algorithm was implemented 
 to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
 used and instead, a different script with a manual parameter selection was used.
-
-\subsubsection{Data preprocessing}
-The collected data was preprocessed before being fed into the model. Firstly, the data files were mixed in order to 
-avoid having the model learn patterns based on the state of the muscles of the test subject or on the test subject itself.
+\\
+This implementation was deemed unsatisfactory as the model achieve a precision of 25\% on the validation set no matter the
+learning rate or number of epochs used. Additionally, the results consisted on the model only giving one single class as the output
+and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes. 
+This led to a stage of debugging the implementation of the model and without successful results, the decision to reimplement 
+the model with a slightly different structure was made.
+\\
+The new model removed the fully connected input layer and instead of receiving windowed data, the model would receive one input
+from each sensor at a time. This new model was trained and tested with the same data as the previous model and achieved the same results
+as the previous model.
+\\
+After inspecting both model implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
+of the models might be the data itself. The data files were shuffled before being fed into the model to avoid learning on the test subject
+itself, however, the data was not preprocessed in any other way aside from windowing for the first model. The data from each file was fed
+into the model in the same order as it was collected, which followed a consistent class order. This consistent class order might have led
+the model's gradient to get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
 
 \subsection{Labview}
 
