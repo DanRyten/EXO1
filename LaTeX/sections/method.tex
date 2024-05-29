@@ -107,24 +107,8 @@ avoid having the model learn patterns based on the state of the muscles of the t
 
 \subsection{Labview}
 
-What we have done so far: 
-
-\begin{itemize}
-    
-    \item Made a new fixture for the arm to allow easier access to it in exchange for disconnecting the shoulder motor for now.
-    
-    \item Used the Myoware 1.0 to sample a signal and tried to do the same with Myoware 2.0.
-    
-    \item Installed the needed software for the roboRIO to work and started investigating the use of LabView in tandem with it.
-    
-\end{itemize}
-What we still need to do:
-\begin{itemize}    
-    \item Set up a shared database and data sampling method.
-    
-    \item Start sampling
-    
-    \item Choose AI method
-    
-    \item Either find a prebuilt or build an AI
-\end{itemize}
+\subsection{Labview Implementation}
+The LabView implementation was multifacated, with three destinct parts. The first being the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
+to be read by the embedded system. The second being data acquisition done on the \acrfull(FPGA) which opens two ports and reads the voltage continuously. The third one being the Real Time system which
+initialises all connections, and loads settings and weights. It then runs a loop of data gathering from the \acrshort(FPGA) then running it through the RNN which output is interpretated into a single 
+value to be sent through the CAN buss to a motor controller. If the loop is interupted it follows a termination of all the connections.
