@@ -48,7 +48,7 @@ implementations for the same model:
 
 Before going through with implementing the model, a design was made. The final model is based on the work of \cite{RNNEMG} 
 as their \acrfull{lstm} implementation provided promising results both in accuracy and inference time. The model consists 
-of three layers:
+of four layers:
 \begin{itemize}
 
     \item Input layer
@@ -61,30 +61,32 @@ of three layers:
 
 \end{itemize}
 
-\cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each of the \acrshort{lstm} 
+\cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
 algorithm for their specific dataset. However, due to hardware restrictions, running such an optimizer was not possible. Instead, 
-the parameters were chosen by trial and error, a process during which we realized that the model provided a perfect accuracy 
+the parameters were chosen by trial and error, CHANGE a process during which we realized that the model provided a perfect accuracy 
 for our dataset leading to the conclusion that the number of epochs could be reduced to 1 and the final model would be chosen 
-by the one that provided the lowest inference time. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
+by the one that provided the lowest inference time CHANGE. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
 the selection process and table \ref{table:rnn_params} shows the parameters used.
 
-\begin{figure}
+\begin{figure}[h]
     \centering
     \includegraphics[scale=0.25]{images/rnn_struct.png}
     \caption{Structure of the final \acrshort{rnn} model}
     \label{fig:rnn_struct}
 \end{figure}
 
-\begin{table}[]
+\begin{table}[h]
     \centering
     \begin{tabular}{|c|c|}
     \hline
     \textbf{Parameter} & \textbf{Value} \\ \hline
+    Number of nodes in the input layer & 250 \\ \hline
     Number of nodes in the first \acrshort{lstm} layer & 15 \\ \hline
     Number of nodes in the second \acrshort{lstm} layer & 8 \\ \hline
+    Number of output classes & 4 \\ \hline
     Learning rate & 0.00502 \\ \hline
-    Number of epochs & 1 \\ \hline
+    Number of epochs & CHANGE \\ \hline
     \end{tabular}
     \caption{Parameters of the \acrshort{rnn} model}
     \label{table:rnn_params}
@@ -95,10 +97,13 @@ The Python implementation of the \acrshort{rnn} was done using the PyTorch libra
 to create and train the model while using LSTM layers. The model runs once over the training set, then it is 
 tested over the test set where the accuracy and average inference time are calculated. After the model is trained 
 and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
-This Python implementation also contains scripts both for parsing the data files and for windowing the data in 
-order to have it prepared for the model. Originally, a script using the \acrshort{gwo} algorithm was implemented 
+Originally, a script using the \acrshort{gwo} algorithm was implemented 
 to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
 used and instead, a different script with a manual parameter selection was used.
+
+\subsubsection{Data preprocessing}
+The collected data was preprocessed before being fed into the model. Firstly, the data files were mixed in order to 
+avoid having the model learn patterns based on the state of the muscles of the test subject or on the test subject itself.
 
 \subsection{Labview}
 
