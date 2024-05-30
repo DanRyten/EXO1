@@ -7,18 +7,17 @@ With the use of the Myoware sensors and Analog Discovery studio, the signal Acqu
 The Analog Discovery studio studio made processing and transferring the signals to Python lightwork with small. the 
 
 Due to unnoticed bugs the training that had been done was found to be invalid and could not be rectified in time.
-The
-weights of the RNN could not be transferred to LabView without great difficulties due to the lack of clarity provided by
+The weights of the \acrshort{rnn} could not be transferred to LabView without great difficulties due to the lack of clarity provided by
 pyTorch. Making use of methods that would allow for either easier weight extraction or for the model to be trained
 directly in LabView would be preferred.
 
+Another aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
+with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
+into atomic movements and then combining them in a random order could be a solution to this issue.
 
 Due to time constraints the method for driving them at variable speeds was not implemented. The steps to implement it
 would involve either a separate function analyzing the amplitude of the inputs, or to compare the outputs of the RNN,
 with higher certainty leading to higher speed.
 
-
 A definite improvement from the starting point of the previous work, showing an improvement by observation of the video made by the last group. During testing of the exoskeleton made by the last group,
 the exoskeleton finished a full movement from start to stop approximately one second after the user finished the movement. During testing of the RNN code in Labview a full iteration took 230 ms.
-
-
