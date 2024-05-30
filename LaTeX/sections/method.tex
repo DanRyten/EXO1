@@ -46,7 +46,7 @@ implementations for the same model:
 
 \end{itemize}
 
-Before going through with implementing the model, a design was made. The final model is based on the work of \cite{RNNEMG} 
+Before going through with implementing the model, a design was made. The final model is based on the work of Aviles M. et al. \cite{RNNEMG} 
 as their \acrfull{lstm} implementation provided promising results both in accuracy and inference time. The model consists 
 of four layers:
 \begin{itemize}
@@ -61,12 +61,11 @@ of four layers:
 
 \end{itemize}
 
-\cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
+The research \cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
 algorithm for their specific dataset. However, due to hardware restrictions, running such an optimizer was not possible. Instead, 
-the parameters were chosen by trial and error, CHANGE a process during which we realized that the model provided a perfect accuracy 
-for our dataset leading to the conclusion that the number of epochs could be reduced to 1 and the final model would be chosen 
-by the one that provided the lowest inference time CHANGE. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
+the parameters were chosen by trial and error where precision and size were taken into account as the model needed to be able to be 
+exported to LabView. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
 the selection process and table \ref{table:rnn_params} shows the parameters used.
 
 \begin{figure}[h]
@@ -79,17 +78,43 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|}
-    \hline
-    \textbf{Parameter} & \textbf{Value} \\ \hline
-    Number of nodes in the input layer & 250 \\ \hline
-    Number of nodes in the first \acrshort{lstm} layer & 15 \\ \hline
-    Number of nodes in the second \acrshort{lstm} layer & 8 \\ \hline
-    Number of output classes & 4 \\ \hline
-    Learning rate & 0.00502 \\ \hline
-    Number of epochs & CHANGE \\ \hline
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\ \hline
+        Number of nodes in the input layer & 250 \\ \hline
+        Number of nodes in the first \acrshort{lstm} layer & 15 \\ \hline
+        Number of nodes in the second \acrshort{lstm} layer & 8 \\ \hline
+        Number of output classes & 4 \\ \hline
+        Learning rate & 0.00502 \\ \hline
+        Number of epochs & 10 \\ \hline
     \end{tabular}
-    \caption{Parameters of the \acrshort{rnn} model}
+    \caption{Parameters of the \acrshort{lstm} \acrshort{rnn} model}
     \label{table:rnn_params}
+\end{table}
+
+Another model was designed in order to try to solve issues encoutered with the first model. This new model removed the fully connected
+input layer and instead of receiving the full windowed data at once, it would receive one input from each sensor in the window at a time.
+Figure \ref{fig:rnn_struct2} shows the structure of this new model and the table \ref{table:rnn_params2} shows the parameters used.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.21]{images/rnn_struct_2.png}
+    \caption{Structure of the second \acrshort{rnn} model}
+    \label{fig:rnn_struct2}
+\end{figure}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Parameter} & \textbf{Value} \\ \hline
+        Number of nodes in the first \acrshort{lstm} layer & 15 \\ \hline
+        Number of nodes in the second \acrshort{lstm} layer & 8 \\ \hline
+        Number of output classes & 4 \\ \hline
+        Learning rate & 0.00502 \\ \hline
+        Number of epochs & 10 \\ \hline
+    \end{tabular}
+    \caption{Parameters of the second \acrshort{lstm} \acrshort{rnn} model}
+    \label{table:rnn_params2}
 \end{table}
 
 \subsection{Python Implementation}
@@ -108,14 +133,14 @@ This led to a stage of debugging the implementation of the model and without suc
 a model with a slightly different structure was made.
 \\
 The new model removed the fully connected input layer and instead of receiving windowed data, the model would receive one input
-from each sensor at a time. This new model was trained and tested with the same data as the previous model and achieved the same results
-as the previous model.
+from each sensor at a time from the windowed data. This new model was trained and tested with the same data as the previous model 
+and achieved the same results as the previous model.
 \\
 After inspecting both model implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
 of the models might be the data itself. The data files were shuffled before being fed into the model to avoid learning on the test subject
-itself, however, the data was not preprocessed in any other way aside from windowing for the first model. The data from each file was fed
-into the model in the same order as it was collected, which followed a consistent class order. This consistent class order might have led
-the model's gradient to get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
+itself, however, the data was not preprocessed in any other way aside from windowing. The data from each file was fed into the model in the 
+same order as it was collected, which followed a consistent class order. This consistent class order might have led the model's gradient to 
+get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
 
 \subsection{Labview Implementation}
 The LabView implementation was multifaceted, with three distinct parts. The first is the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
