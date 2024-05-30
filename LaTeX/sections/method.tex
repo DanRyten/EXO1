@@ -95,17 +95,17 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
 \subsection{Python Implementation}
 The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
 to create and train the model while using LSTM layers. The model runs over the training set and for every epoch
-it is validated to test its accuracy in the validation set and for every class in the validation set.After the model is trained 
+it is validated to test its accuracy in the validation set and for every class in the validation set. After the model is trained 
 and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
 Originally, a script using the \acrshort{gwo} algorithm was implemented 
 to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
 used and instead, a different script with a manual parameter selection was used.
 \\
-This implementation was deemed unsatisfactory as the model achieve a precision of 25\% on the validation set no matter the
-learning rate or number of epochs used. Additionally, the results consisted on the model only giving one single class as the output
+This implementation was deemed unsatisfactory as the model achieved a precision of 25\% on the validation set no matter the
+learning rate or number of epochs used. Additionally, the results consisted of the model only giving one single class as the output
 and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes. 
 This led to a stage of debugging the implementation of the model and without successful results, the decision to reimplement 
-the model with a slightly different structure was made.
+a model with a slightly different structure was made.
 \\
 The new model removed the fully connected input layer and instead of receiving windowed data, the model would receive one input
 from each sensor at a time. This new model was trained and tested with the same data as the previous model and achieved the same results
@@ -118,7 +118,7 @@ into the model in the same order as it was collected, which followed a consisten
 the model's gradient to get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
 
 \subsection{Labview Implementation}
-The LabView implementation was multifacated, with three destinct parts. The first being the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
+The LabView implementation was multifaceted, with three distinct parts. The first is the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
 to be read by the embedded system. The second being data acquisition done on the \acrfull(FPGA) which opens two ports and reads the voltage continuously. The third one being the Real Time system which
 initialises all connections, and loads settings and weights. It then runs a loop of data gathering from the \acrshort(FPGA) then running it through the RNN which output is interpretated into a single 
 value to be sent through the CAN buss to a motor controller. If the loop is interupted it follows a termination of all the connections.
