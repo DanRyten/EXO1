@@ -119,6 +119,6 @@ the model's gradient to get stuck in a local minimum, which would explain the 25
 
 \subsection{Labview Implementation}
 The LabView implementation was multifaceted, with three distinct parts. The first is the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
-to be read by the embedded system. The second is data acquisition done on the \acrfull(FPGA) which opens two ports and reads the voltage continuously. The third one being the Real Time system which
-initialises all connections, and loads settings and weights. It then runs a loop of data gathering from the \acrshort(FPGA) then running it through the RNN which output is interpretated into a single 
-value to be sent through the CAN buss to a motor controller. If the loop is interupted it follows a termination of all the connections.
+to be read by the embedded system. The second is data acquisition done on the \acrfull{FPGA} which opens two ports and reads the voltage continuously. The third one is the Real Time system which
+initializes all connections, and loads settings and weights. It then runs a loop of data gathering from the \acrshort{FPGA} then running it through the RNN which output is interpreted into a single 
+value to be sent through the CAN bus to a motor controller. If the loop is interrupted it follows a termination of all the connections.
