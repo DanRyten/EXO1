@@ -5,7 +5,7 @@ from user to user. When examining the signal no notable features were found lead
 The Analog Discovery studio studio made processing and transferring the signals to Python lightwork.
 
 
-After inspecting both python implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
+After inspecting both Python implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
 of the models might be the data itself. The data files were shuffled before being fed into the model to avoid learning on the test subject
 itself, however, the data was not preprocessed in any other way aside from windowing. The data from each file was fed into the model in the 
 same order as it was collected, which followed a consistent class order. This consistent class order might have led the model's gradient to 
