@@ -23,7 +23,7 @@ middle of the biceps brachii while tensed, the other end was placed along the gr
 towards the elbow, and the reference was placed between the bicep and triceps on the inside of the arm. 
 The triceps sensor was placed with one end in the middle of the long head of the triceps brachii while 
 tensed, the other end was placed along the grain of the muscle towards the elbow, and the reference was 
-placed either between the bicep and triceps on the inner arm or on the elbow depending on the which would 
+placed either between the bicep and triceps on the inner arm or the elbow depending on the which would 
 be more easily reached. Measurement data was acquired using the Digilent Waveforms program. In Waveforms a 
 script was created with javascript code where data was labeled from 0-3 with each state representing a 
 different action, 0 = static down, 1 = moving up, 2 = static up, 3 = moving down. Two LED lights showed what 
@@ -32,7 +32,7 @@ which arm, what weight was used and what direction the weight was providing resi
 
 
 \subsection{\acrfull{rnn}}
-With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction a \acrshort{rnn} used for the AI model. 
+With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction, a \acrshort{rnn} was used for the AI model. 
 Since the purpose of the project was to end with a working exoskeleton based 
 on the RoboRIO system, an embedded solution had to be found. This resulted in two different \acrshort{rnn} 
 implementations for the same model:
@@ -91,9 +91,9 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
     \label{table:rnn_params}
 \end{table}
 
-Another model was designed in order to try to solve issues encoutered with the first model. This new model removed the fully connected
+Another model was designed in order to try to solve issues encountered with the first model. This new model removed the fully connected
 input layer and instead of receiving the full windowed data at once, it would receive one input from each sensor in the window at a time.
-Figure \ref{fig:rnn_struct2} shows the structure of this new model and the table \ref{table:rnn_params2} shows the parameters used.
+Figure \ref{fig:rnn_struct2} shows the structure of this new model and table \ref{table:rnn_params2} shows the parameters used.
 
 \begin{figure}[h]
     \centering
