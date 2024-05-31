@@ -1,8 +1,11 @@
 \section{Conclusion}
 
-The signal acquisition method using the Myoware along the Analog Discovery studio was adequate for sampling but whether live sampling using the Myoware along with the RoboRIO is on par remains inconclusive 
+With the use of the Myoware sensors and Analog Discovery studio, the signal Acquisition was processed without large issues since the signals received from the sensors were consistent from user to user. 
+The Analog Discovery studio studio made processing and transferring the signals to Python lightwork.
+
 
 An unprocessed signal was fed into the \acrshort{rnn} due to the no significant features found in the feature extraction which seemed worth the processing time.
+
 
 After inspecting both model implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
 of the models might be the data itself. The data files were shuffled before being fed into the model to avoid learning on the test subject
@@ -11,24 +14,24 @@ same order as it was collected, which followed a consistent class order. This co
 get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
 
 
-With the use of the Myoware sensors and Analog Discovery studio, the signal Acquisition was processed without large issues since the signals received from the sensors were consistent from user to user. 
-The Analog Discovery studio studio made processing and transferring the signals to Python lightwork.
+Another aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
+with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
+into atomic movements and then combining them in a random order could be a solution to this issue.
 
-Due to unnoticed bugs the training that had been done was found to be invalid and could not be rectified in time.
+
 The weights of the \acrshort{rnn} could not be transferred to LabView without great difficulties due to the lack of clarity provided by
 PyTorch. Making use of methods that would allow for either easier weight extraction or for the model to be trained
 directly in LabView would be preferred.
 
-Another aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
-with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
-into atomic movements and then combining them in a random order could be a solution to this issue.
 
 Due to time constraints the method for driving them at variable speeds was not implemented. The steps to implement it
 would involve either a separate function analyzing the amplitude of the inputs, or to compare the outputs of the RNN,
 with higher certainty leading to higher speed.
 
+
 The latency saw definite improvement from the starting point of the previous work, showing an improvement by observation of the video made by the last group. During testing of the exoskeleton made by the last group,
 the exoskeleton finished a full movement from start to stop approximately one second after the user finished the movement. During testing of the RNN code in Labview a full iteration took 230 ms.
+
 
 \subsection{Future Work}
 
