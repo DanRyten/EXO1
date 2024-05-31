@@ -16,24 +16,24 @@
 \subsection{Signal Aqusition}
 A setup consisting of a Digilent Analog Discovery studio measurement device, two Myoware muscle sensor 
 kits, various weights from none to weights of up to six kilograms and a resistance 
-band were used during the signal acquisition. The Myoware sensors are connected to the Analog Discovery 
-oscilloscopes, ground and a 3.3 voltage input. Two oscilloscopes are connected to the two Myoware 
+band were used during the signal acquisition. The Myoware sensors were connected to the Analog Discovery 
+oscilloscopes, ground and a 3.3 voltage input. Two oscilloscopes were connected to the two Myoware 
 sensors, one for the bicep and one for the tricep. The bicep sensor was placed with one end in the 
 middle of the biceps brachii while tensed, the other end was placed along the grain of the muscle 
 towards the elbow, and the reference was placed between the bicep and triceps on the inside of the arm. 
 The triceps sensor was placed with one end in the middle of the long head of the triceps brachii while 
 tensed, the other end was placed along the grain of the muscle towards the elbow, and the reference was 
 placed either between the bicep and triceps on the inner arm or on the elbow depending on the which would 
-be more easily reached. Measurement data is acquired using the Digilent Waveforms program. In Waveforms a 
-script was created with javascript code where data is labeled from 0-3 with each state representing a 
-different action, 0 = static down, 1 = moving up, 2 = static up, 3 = moving down. Two LED lights show what 
-movement is expected from the user and the data is collected and labeled accordingly. Which test subject, 
+be more easily reached. Measurement data was acquired using the Digilent Waveforms program. In Waveforms a 
+script was created with javascript code where data was labeled from 0-3 with each state representing a 
+different action, 0 = static down, 1 = moving up, 2 = static up, 3 = moving down. Two LED lights showed what 
+movement was expected from the user and the data was collected and labeled accordingly. Which test subject, 
 which arm, what weight was used and what direction the weight was providing resistance in were all recorded.
 
 
 \subsection{\acrfull{rnn}}
-With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction, we chose to 
-use a \acrshort{rnn} as our AI model. Since the purpose of the project is to end with a working exoskeleton based 
+With the objective of having a reliable method for \acrshort{emg} based continuous motion prediction a \acrshort{rnn} used for the AI model. 
+Since the purpose of the project was to end with a working exoskeleton based 
 on the RoboRIO system, an embedded solution had to be found. This resulted in two different \acrshort{rnn} 
 implementations for the same model:
 \begin{itemize}
@@ -46,7 +46,7 @@ implementations for the same model:
 
 \end{itemize}
 
-Before going through with implementing the model, a design was made. The final model is based on the work of Aviles M. et al. \cite{RNNEMG} 
+Before going through with implementing the model, a design was made. The final model was based on the work of Aviles M. et al. \cite{RNNEMG} 
 as their \acrfull{lstm} implementation provided promising results both in accuracy and inference time. The model consists 
 of four layers:
 \begin{itemize}
@@ -119,9 +119,9 @@ Figure \ref{fig:rnn_struct2} shows the structure of this new model and the table
 
 \subsection{Python Implementation}
 The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
-to create and train the model while using LSTM layers. The model runs over the training set and for every epoch
-it is validated to test its accuracy in the validation set and for every class in the validation set. After the model is trained 
-and tested, it is saved both in a .pth file and a .xml file to be used in LabView.
+to create and train the model while using LSTM layers. The model rans over the training set and for every epoch
+it was validated to test its accuracy in the validation set and for every class in the validation set. After the model was trained 
+and tested, it was saved both in a .pth file and a .xml file to be used in LabView.
 Originally, a script using the \acrshort{gwo} algorithm was implemented 
 to optimize the parameters of the model, however, due to the limitations mentioned before, this script was not 
 used and instead, a different script with a manual parameter selection was used.
