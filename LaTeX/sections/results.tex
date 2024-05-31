@@ -33,8 +33,11 @@ Looking back at the research questions,
 
 \textbf{RQ3:} Can the latency between the action of the wearer and the action of the actuator be reduced?
 
-The results showed that for research question RQ1 the \acrshort{rnn} in Python was not able to output the three distinct states of function for the arm. This also resulted in the correct weights not being transferred to Labview. 
-The training of the \acrshort{rnn} was not able to be completed. 
+The results showed that for research question RQ1 the \acrshort{rnn} in Python was not able to output the three distinct states of 
+function for the arm since both \acrshort{rnn} models achieved a precision of 25\% on the validation set no matter the
+learning rate or number of epochs used. Additionally, the results consisted of the model only giving one single class as the output
+and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes. This also resulted in 
+the correct weights not being transferred to Labview.
 
 For RQ2 the method for driving the actuators at variable speeds was not implemented but could be easily implemented as a subVI in Labview.  
 
