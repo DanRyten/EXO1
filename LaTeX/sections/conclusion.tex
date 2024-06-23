@@ -15,17 +15,14 @@ Another aspect to take into account in regards to the training of the \acrshort{
 with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
 into atomic movements and then combining them in a random order could be a solution to this issue.
 \\
-
 The weights of the \acrshort{rnn} could not be transferred to LabView without great difficulties due to the lack of clarity provided by
 PyTorch. Making use of methods that would allow for either easier weight extraction or for the model to be trained
 directly in LabView would be preferred.
 \\
-
 Due to time constraints, the method for driving the actuator at variable speeds was not implemented. The steps to implement it
 would involve either a separate function analyzing the amplitude of the inputs, or comparing the outputs of the RNN,
 with higher certainty leading to higher speed.
 \\
-
 During testing of the exoskeleton made by the last group, the exoskeleton finished a full movement from start to stop approximately 
 one second after the user finished the movement based on observation of a video from the previous group. During testing of the RNN 
 code in Labview a full iteration took 230 ms, showing a clear improvement.
