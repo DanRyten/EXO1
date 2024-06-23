@@ -39,10 +39,10 @@ implementations for the same model:
 \begin{itemize}
 
     \item \textbf{Python implementation:} The first implementation was done using Python and the PyTorch library. 
-    This implementation was used to train the model, test its accuracy and extract its parameters.
+    This implementation was used to train the model, test its accuracy and extract the trained model's parameters.
     
     \item \textbf{LabView implementation:} The second implementation was done using LabView and the RoboRIO system. 
-    This implementation was used to import the Python parameters to use the \acrshort{rnn} in a real-time scenario.
+    This implementation was used to import the trained model's parameters to use the \acrshort{rnn} in a real-time scenario.
 
 \end{itemize}
 
@@ -63,10 +63,23 @@ of four layers:
 
 The research \cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
-algorithm for their specific dataset. However, due to hardware restrictions, running such an optimizer was not possible. Instead, 
+algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table:hardware}) that made the training of a 
+single model take an average of 40 minutes and a usage time restriction of 5 hours, running such an optimizer was not possible. Instead, 
 the parameters were chosen by trial and error where precision and size were taken into account as the model needed to be able to be 
 exported to LabView. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
 the selection process and table \ref{table:rnn_params} shows the parameters used.
+
+\begin{table}[h]
+    \centering
+    \caption{Hardware used for training the model}
+    \label{table:hardware}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Component} & \textbf{Specification} \\ \hline
+        CPU & i7-1185G7 \\ \hline
+        RAM & 16GB \\ \hline
+    \end{tabular}
+\end{table}
 
 \begin{figure}[h]
     \centering
@@ -77,6 +90,8 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
 
 \begin{table}[h]
     \centering
+    \caption{Parameters of the first \acrshort{lstm} \acrshort{rnn} model}
+    \label{table:rnn_params}
     \begin{tabular}{|c|c|}
         \hline
         \textbf{Parameter} & \textbf{Value} \\ \hline
@@ -87,8 +102,6 @@ the selection process and table \ref{table:rnn_params} shows the parameters used
         Learning rate & 0.00502 \\ \hline
         Number of epochs & 10 \\ \hline
     \end{tabular}
-    \caption{Parameters of the first \acrshort{lstm} \acrshort{rnn} model}
-    \label{table:rnn_params}
 \end{table}
 
 Another model was designed in order to try to solve issues encountered with the first model. This new model removed the fully connected
@@ -104,6 +117,8 @@ Figure \ref{fig:rnn_struct2} shows the structure of this new model and table \re
 
 \begin{table}[h]
     \centering
+    \caption{Parameters of the second \acrshort{lstm} \acrshort{rnn} model}
+    \label{table:rnn_params2}
     \begin{tabular}{|c|c|}
         \hline
         \textbf{Parameter} & \textbf{Value} \\ \hline
@@ -113,8 +128,6 @@ Figure \ref{fig:rnn_struct2} shows the structure of this new model and table \re
         Learning rate & 0.00502 \\ \hline
         Number of epochs & 10 \\ \hline
     \end{tabular}
-    \caption{Parameters of the second \acrshort{lstm} \acrshort{rnn} model}
-    \label{table:rnn_params2}
 \end{table}
 
 \subsection{Python Implementation}
