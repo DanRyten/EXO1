@@ -45,7 +45,7 @@ artifacts.
 \acp{rnn} is a type of neural network designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
 represents information about the sequence it has seen so far \cite{RNNdef}. This makes them ideal for tasks such as continuous motion prediction from \acrshort{emg} signals
 as the network can learn patterns from the raw data without the need for previous feature extraction as it is done within the model.
-In figure \ref{fig:rnn_basic} the basic structure of a \acrshort{rnn} can be seen.
+In figure \ref{fig:rnn_basic} the basic structure of a \acrshort{rnn} can be seen, where an input is processed and the output is fed again as an input.
 Research such as \cite{RNNEMG} has shown that \acp{rnn} can be used to predict continuous motion from \acrshort{emg} signals with a degree of 
 accuracy as high as 98.46\%.
 
@@ -60,12 +60,11 @@ accuracy as high as 98.46\%.
 \acrshort{lstm} networks were invented to solve the vanishing gradient problem that \acrshort{rnn} networks have by incorporating non-linear data-dependent controls 
 into a \acrshort{rnn} cell. In order to achieve this, multiplicative input and output gates were added to protect the memory contents from perturbation of irrelevent inputs
 and to protect other units from irrelevant memory contents respectively \cite{LSTMoriginal}.
-\\
 These \acrshort{lstm} cells present a key weakness, the cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
-would stop working as a memory. To solve this issue, forget gates were introduced by Gers F. et al. \cite{LSTMforget}. These gates are designed to learn to reset memory blocks
+would stop working as a memory. To solve this issue, forget gates were introduced by Gers et al. \cite{LSTMforget}. These gates are designed to learn to reset memory blocks
 when the information they store is no longer relevant. These resets are a gradual reset that corresponds to slowly fading cell states.
-\\
-In figure \ref{fig:lstm_cell} the structure of a \acrshort{lstm} cell can be seen.
+In figure \ref{fig:lstm_cell} the structure of a \acrshort{lstm} cell can be seen with its different gates and the activation functions they use and how they cell and hidden states
+are calculated.
 
 \begin{figure}[h]
     \centering
