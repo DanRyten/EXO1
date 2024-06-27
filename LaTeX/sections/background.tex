@@ -60,7 +60,7 @@ accuracy as high as 98.46\%.
 \acrfull{lstm} networks were invented to solve the vanishing gradient problem that \acrshort{rnn} networks have by incorporating non-linear data-dependent controls 
 into a \acrshort{rnn} cell. In order to achieve this, multiplicative input and output gates were added to protect the memory contents from perturbation of irrelevent inputs
 and to protect other units from irrelevant memory contents respectively \cite{LSTMoriginal}.
-These \acrshort{lstm} cells present a key weakness, the cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
+These \acrshort{lstm} cells present a key weakness. The cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
 would stop working as a memory. To solve this issue, forget gates were introduced by Gers et al. \cite{LSTMforget}. These gates are designed to learn to reset memory blocks
 when the information they store is no longer relevant. These resets are a gradual reset that corresponds to slowly fading cell states.
 In figure \ref{fig:lstm_cell} the structure of a \acrshort{lstm} cell can be seen with its different gates and the activation functions they use and how they cell and hidden states
