@@ -106,7 +106,7 @@ Figure \ref{fig:rnn_struct} shows the structure of our final model after the sel
     \end{tabular}
 \end{table}
 
-Another model was designed in order to try to solve issues encountered with the first model. This new model removed the fully connected
+Another model was designed as the first model provided only one class as its output. This new model removed the fully connected
 input layer and instead of receiving the full windowed data at once, it would receive one input from each sensor in the window at a time.
 Figure \ref{fig:rnn_struct2} shows the structure of this new model and table \ref{table:rnn_params2} shows the parameters used.
 
