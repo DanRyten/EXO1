@@ -25,21 +25,9 @@
 %    \caption[Short text]{This is an example of multiple figures.}
 %    \label{fig:MDHlogga}
 %\end{figure}
-Looking back at the research questions,
-
-\textbf{RQ1:} Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
-
-\textbf{RQ2:} Can the elbow actuator operate at variable speeds based on the effort exerted by the wearer?
-
-\textbf{RQ3:} Can the latency between the action of the wearer and the action of the actuator be reduced?
-
-The results showed that for RQ1 the \acrshort{rnn} in Python was not able to output the three distinct states of 
+The \acrshort{rnn} in Python was not able to output the three distinct states of 
 function for the arm since both \acrshort{rnn} models achieved a precision of 25\% on the validation set no matter the
 learning rate or number of epochs used. Additionally, the results consisted of the model only giving one single class as the output
 and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes. 
 This led to the model's weights never being transferred to LabView.
-
-For RQ2 the method for driving the actuators at variable speeds was not implemented but could be feasibly implemented as a subVI in Labview.  
-
-Lastly, for RQ3 it remains inconclusive.
 %the time it takes to run one iteration of the code in LabView was 230ms.
