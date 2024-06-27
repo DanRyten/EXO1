@@ -33,8 +33,8 @@ artifacts.
     which is the reason why they are widely used in classification and regression models. These features include \acrfull{mav}, \acrfull{rms}, \acrfull{zc}, \acrfull{ssc} and \acrfull{wl}
     among others.
     \item \textbf{Frequency-domain features:} some of the most common features extracted from the frequency domain are the \acrfull{ps}, \acrfull{mnf} and \acrfull{fr}.
-    These, however, involve a higher computational cost than the time-domain features.
-    \item \textbf{Time-frequency domain features:} these features can localize the energy of the signal both in time and frequency, but they usually
+    These, however, involve a higher computational cost than the time-domain features due to the need for a transformation.
+    \item \textbf{Time-frequency domain features:} these features can localize the energy of the signal both in time and frequency, but they also
     require a transformation that increases the computational cost, as it happens with the \acrfull{stft} or the \acrfull{wt}.
 \end{itemize}
 
@@ -61,6 +61,7 @@ accuracy as high as 98.46\%.
 into a \acrshort{rnn} cell. In order to achieve this, multiplicative input and output gates were added to protect the memory contents from perturbation of irrelevent inputs
 and to protect other units from irrelevant memory contents respectively \cite{LSTMoriginal}.
 These \acrshort{lstm} cells prevent a key weakness, the cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
+These \acrshort{lstm} cells present a key weakness. The cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
 would stop working as a memory. To solve this issue, forget gates were introduced by Gers et al. \cite{LSTMforget}. These gates are designed to learn to reset memory blocks
 when the information they store is no longer relevant. These resets are a gradual reset that corresponds to slowly fading cell states.
 In figure \ref{fig:lstm_cell} the structure of a \acrshort{lstm} cell can be seen with its different gates and the activation functions they use and how they cell and hidden states
