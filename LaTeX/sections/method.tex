@@ -65,9 +65,11 @@ The research \cite{RNNEMG} proposed different ranges of values for parameters su
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
 algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table:hardware}) that made the training of a 
 single model take an average of 40 minutes and a usage time restriction of 5 hours, running such an optimizer was not possible. Instead, 
-the parameters were chosen by trial and error where precision and size were taken into account as the model needed to be able to be 
-exported to LabView. Figure \ref{fig:rnn_struct} shows the structure of our final model after 
-the selection process and table \ref{table:rnn_params} shows the parameters used.
+the parameters were chosen by trial and error with small variations around the parameters shown in \cite{RNNEMG} where output precision and 
+model size were taken into account as the model needed to be able to be exported to LabView.
+The parameters of most importance were the number of nodes in the \acrshort{lstm} layers and for each combination 3 number of epochs were
+tested, 5, 10 and 15.
+Figure \ref{fig:rnn_struct} shows the structure of our final model after the selection process and table \ref{table:rnn_params} shows the parameters used.
 
 \begin{table}[h]
     \centering
