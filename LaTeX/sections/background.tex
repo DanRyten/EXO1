@@ -41,8 +41,8 @@ artifacts.
 
 \subsection{Sequence models}
 
-\subsubsection{\acp{rnn}}
-\acp{rnn} is a type of neural network designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
+\subsubsection{Recurrent Neural Networks}
+\acp{rnn} are a type of neural network designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
 represents information about the sequence it has seen so far \cite{RNNdef}. This makes them ideal for tasks such as continuous motion prediction from \acrshort{emg} signals
 as the network can learn patterns from the raw data without the need for previous feature extraction as it is done within the model.
 In figure \ref{fig:rnn_basic} the basic structure of a \acrshort{rnn} can be seen, where an input is processed and the output is fed again as an input.
@@ -56,8 +56,8 @@ accuracy as high as 98.46\%.
     \label{fig:rnn_basic}
 \end{figure}
 
-\subsubsection{\acrfull{lstm}}
-\acrshort{lstm} networks were invented to solve the vanishing gradient problem that \acrshort{rnn} networks have by incorporating non-linear data-dependent controls 
+\subsubsection{Long Short-Term Memory}
+\acrfull{lstm} networks were invented to solve the vanishing gradient problem that \acrshort{rnn} networks have by incorporating non-linear data-dependent controls 
 into a \acrshort{rnn} cell. In order to achieve this, multiplicative input and output gates were added to protect the memory contents from perturbation of irrelevent inputs
 and to protect other units from irrelevant memory contents respectively \cite{LSTMoriginal}.
 These \acrshort{lstm} cells present a key weakness, the cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
