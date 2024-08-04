@@ -38,29 +38,11 @@ validation set. Having only a single repetition of the movement for each sample 
 stuck in such a local minimum during training. These changes would allow for the training of the model to progress further allowing for 
 clearer testing of the system.
 \\
-
 The weights of the \acrshort{rnn} could not be transferred to LabView without great difficulties due to the lack of clarity provided by
 PyTorch. Making use of methods that would allow the model to be trained directly in LabView would let the model be extracted in whole or 
 for the weights to be extracted in a form more easily parsed by LabView. Resulting in a more streamlined process of going from training 
 the model to implementation.
 \\
-
 The model was also not able to be controll the actuator of the exoskeleton due to a lack of any motor controller. Being able to 
 physically see the operation of the model would aid in reviewing the functionality of the model. Aquiering a functional motor 
 controller and setting up a connection between the it and the model would alleviate this issue.
-
-\subsection{Future Work}
-
-PyTorch was used in this project which was found to be incompatible with LabView leading to difficulties when it comes to extracting the 
-weights of the model, as well as the lack of a motor controller leading to physical tests of the model to not be possible. 
-Any future projects should consider acquiring and setting up a motor controller to show visible feedback on the 
-exoskeleton as well as solving the issues with the \acrshort{rnn} training as their main priorities.
-An aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
-with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
-into atomic movements and then combining them in a random order could be a solution to this issue.
-
-Once the arm moves, two main directions of improvement could be considered. The first is to mount it on a person. After 
-implementing and mounting it the second direction would be to add more DoF for example shoulder movement.
-
-In the future if all these changes were applied this project would be viable to assist workers in that work using extended and heavy 
-physically static positions.
