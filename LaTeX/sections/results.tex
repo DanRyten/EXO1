@@ -2,32 +2,10 @@
 \label{section:results}
 
 %This section should present answers to all research questions.
-%
-%It is normal to have only one results section, but you can create more sections if finding it more appropriate. You can
-%also divide results into subsections. Perhaps you want to refer to some other section, for example (see Section \ref{section:method}).
-%You can also place figures, you should always reference these in the text, see Figure \ref{fig:MDHlogga} for an example of a figure
-%including subfigures. Remember that all figures should have a figure label explaining their content.
-%
-%
-%\begin{figure}[H]
-%    \centering
-%    \subfigure[MDH logo]{
-%    \label{fig:MDH1}
-%    \includegraphics[width=.2\columnwidth]{MDHlogga}}
-%    \qquad
-%    \subfigure[MDH logo]{
-%    \label{fig:MDH2}
-%    \includegraphics[width=.2\columnwidth]{MDHlogga}}
-%    \qquad
-%    \subfigure[MDH logo]{
-%    \label{fig:MDH3}
-%    \includegraphics[width=.2\columnwidth]{MDHlogga}}
-%    \caption[Short text]{This is an example of multiple figures.}
-%    \label{fig:MDHlogga}
-%\end{figure}
-The \acrshort{rnn} in Python was not able to output the three distinct states of 
+
+The \acrshort{rnn} in Python was not able to output the four distinct states of 
 function for the arm since both \acrshort{rnn} models achieved a precision of 25\% on the validation set no matter the
 learning rate or number of epochs used. Additionally, the results consisted of the model only giving one single class as the output
-and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes. 
-This led to the model's weights never being transferred to LabView.
-%the time it takes to run one iteration of the code in LabView was 230ms.
+and therefore having a 100\% accuracy on that specific class and a 0\% accuracy on the rest of the classes which 
+led to the model's weights never being transferred to LabView.
+As for the \acrshort{rnn} template implemented in LabView, one iteration of the code took 230ms to run.

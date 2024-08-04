@@ -1,23 +1,36 @@
 \section{Discussion}
 \label{section:disc}
 
-Looking back at the research questions,
+%Looking back at the research questions,
+%
+%\begin{itemize}
+%        
+%    \item \textbf{RQ1:} Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
+%
+%    \item \textbf{RQ2:} Can the elbow actuator operate at variable speeds based on the effort exerted by the wearer?
+%
+%    \item \textbf{RQ3:} Can the latency between the action of the wearer and the action of the actuator be reduced to under one second?
+%
+%\end{itemize}
+%
+%The structure for the model was constructed to facilitate RQ1 but the training was not functional.
+%
+%For RQ2 the method for driving the actuators at variable speeds was not implemented but could be feasibly implemented as a subVI in Labview. 
+%A possible way to implement this would be by analyzing the amplitude of the inputs or comparing the outputs of the RNN, with higher certainty leading to higher speed.
+%
+%Lastly, for RQ3 a full iteration of the RNN in LabView took 230 ms, showing a clear improvement compared to the testing of the exoskeleton 
+%made by the last group, the exoskeleton finished a full movement from start to stop approximately one second after the user finished the 
+%movement based on observation of a video from the previous group.
 
-\begin{itemize}
-        
-    \item \textbf{RQ1:} Can the elbow actuator be given three distinct states of function, turning the arm upwards, downwards, and keeping it at rest?
 
-    \item \textbf{RQ2:} Can the elbow actuator operate at variable speeds based on the effort exerted by the wearer?
-
-    \item \textbf{RQ3:} Can the latency between the action of the wearer and the action of the actuator be reduced to under one second?
-
-\end{itemize}
-
-The structure for the model was constructed to facilitate RQ1 but the training was not functional.
-
-For RQ2 the method for driving the actuators at variable speeds was not implemented but could be feasibly implemented as a subVI in Labview. 
-A possible way to implement this would be by analyzing the amplitude of the inputs or comparing the outputs of the RNN, with higher certainty leading to higher speed.
-
-Lastly, for RQ3 a full iteration of the RNN in LabView took 230 ms, showing a clear improvement compared to the testing of the exoskeleton 
-made by the last group, the exoskeleton finished a full movement from start to stop approximately one second after the user finished the 
-movement based on observation of a video from the previous group.
+Our findings show that the \acrshort{rnn} implementation for the RoboRIO is approximately 4.3 times faster
+than the previous implementation made by the last group whick took approximately one second to finish a full movement. 
+This shows that combining the results of Aviles et al. \cite{RNNEMG} with the approach of \acrshort{afes} \cite{AFES} 
+can lead to an exoskeleton with a faster response time.
+\\
+However, the main limitation of the project was the lack of a working model. The \acrshort{rnn} model in Python was not able to output the 
+four distinct states of function for the exoskeleton. Since the model used for the \acrshort{rnn} could be used for \acrshort{emg} signal
+classification as shown by Aviles et al. \cite{RNNEMG}, the issue is likely to be in the data used for training. The data files were
+shuffled before being fed into the model to avoid learning on the test subject itself, however, the data was not preprocessed in any other way
+aside from windowing. The data from each file was fed into the model in the same order as it was collected, wich followed a consistent pattern.
+This consistent pattern might have led the model's gradient to get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
