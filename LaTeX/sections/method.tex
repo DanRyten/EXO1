@@ -15,11 +15,12 @@
 
 %Description of what the experiment is trying to achieve
 The main objective of this project is to classify the movement of a user's arm based on \acrshort{emg} signals in
-4 different classes: static down, moving up, static up, and moving down. This classification is done using a \acrshort{rnn} model.
+4 different classes: static down, moving up, static up, and moving down. This classification is done using a \acrshort{rnn} model
+which will be evaluated in terms of accuracy and inference time.
 
 \subsection{Signal Aqusition}
 A setup consisting of a Digilent Analog Discovery studio measurement device, two Myoware muscle sensor 
-kits, various weights from none to weights of up to six kilograms and a resistance 
+kits, various weights from none to six kilograms and a resistance 
 band were used during the signal acquisition. The Myoware sensors were connected to the Analog Discovery 
 oscilloscopes, ground and a 3.3 voltage input. Two oscilloscopes were connected to the two Myoware 
 sensors, one for the bicep and one for the tricep. The bicep sensor was placed with one end in the 
@@ -28,13 +29,15 @@ towards the elbow, and the reference was placed between the bicep and triceps on
 The triceps sensor was placed with one end in the middle of the long head of the triceps brachii while 
 tensed, the other end was placed along the grain of the muscle towards the elbow, and the reference was 
 placed either between the bicep and triceps on the inner arm or the elbow depending on the which would 
-be more easily reached. Measurement data was acquired using the Digilent Waveforms program. In Waveforms a 
-script was created with javascript code where data was labeled from 0-3 with each state representing a 
+be more easily reached. Measurement data was acquired using the Digilent Waveforms program with a 
+script created with javascript code where data was labeled from 0-3 with each state representing a 
 different action, 0 = static down, 1 = moving up, 2 = static up, 3 = moving down. Two LED lights showed what 
-movement was expected from the user and the data was collected and labeled accordingly. Which test subject, 
-which arm, what weight was used and what direction the weight was providing resistance in were all recorded. 
+movement was expected from the user and the data was collected and labeled accordingly. The test subject, 
+the arm, the weight used and what direction the weight was providing resistance in were all recorded. 
 The samples were taken from four subjects all of which were taken on the left arm, 53, 33, 19, and 7 of the 
-samples were taken from subject one, two, three and four respectively.
+samples were taken from subject one, two, three and four respectively. The final dataset consists on 112 data files
+from which ¿?\% have 240000 samples and ¿?\% have 480000 samples with a total of ¿? minutes of samples. In the Python implementation
+subsection \ref{ssec:python} it is explained how the data was split into training and validation sets.
 
 
 \subsection{Recurrent Neural Network}
@@ -138,7 +141,7 @@ Figure \ref{fig:rnn_struct2} shows the structure of this new model and table \re
     \end{tabular}
 \end{table}
 
-\subsection{Python Implementation}
+\subsection{Python Implementation} \label{ssec:python}
 The Python implementation of the \acrshort{rnn} was done using the PyTorch library as it provided facilities 
 to create and train the model while using LSTM layers. The model ran over the training set and for every epoch
 it was validated to test its accuracy in the validation set and for every class in the validation set.
