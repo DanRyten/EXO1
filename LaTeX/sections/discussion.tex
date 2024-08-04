@@ -24,7 +24,7 @@
 
 
 Our findings show that the \acrshort{rnn} implementation for the RoboRIO is approximately 4.3 times faster
-than the previous implementation made by \acrshort{afes} whick took approximately one second for the exoskeleton to respond to a new movement. 
+than the previous implementation made by \acrshort{afes} which took approximately one second for the exoskeleton to respond to a new movement. 
 This shows that combining the results of Aviles et al. \cite{RNNEMG} with the approach of \acrshort{afes} \cite{AFES} 
 can lead to an exoskeleton with a faster response time.
 \\
@@ -32,7 +32,7 @@ However, the main limitation of the project was the lack of a working model. The
 four distinct states of function for the exoskeleton. Since the model used for the \acrshort{rnn} could be used for \acrshort{emg} signal
 classification as shown by Aviles et al. \cite{RNNEMG}, the issue is likely to be in the data used for training. The data files were
 shuffled before being fed into the model to avoid learning on the test subject itself, however, the data was not preprocessed in any other way
-aside from windowing. The data from each file was fed into the model in the same order as it was collected, wich followed a consistent pattern.
+aside from windowing. The data from each file was fed into the model in the same order as it was collected, which followed a consistent pattern.
 This consistent pattern might have led the model's gradient to get stuck in a local minimum, which would explain the 25\% accuracy on the 
 validation set. Having only a single repetition of the movement for each sample in the data set would reduce the risk of the model getting 
 stuck in such a local minimum during training. These changes would allow for the training of the model to progress further allowing for 
@@ -43,6 +43,6 @@ PyTorch. Making use of methods that would allow the model to be trained directly
 for the weights to be extracted in a form more easily parsed by LabView. Resulting in a more streamlined process of going from training 
 the model to implementation.
 \\
-The model was also not able to be controll the actuator of the exoskeleton due to a lack of any motor controller. Being able to 
-physically see the operation of the model would aid in reviewing the functionality of the model. Aquiering a functional motor 
-controller and setting up a connection between the it and the model would alleviate this issue.
+The model was also not able to control the actuator of the exoskeleton due to a lack of any motor controller. Being able to 
+physically see the operation of the model would aid in reviewing the functionality of the model. Acquiring a functional motor 
+controller and setting up a connection between it and the model would alleviate this issue.
