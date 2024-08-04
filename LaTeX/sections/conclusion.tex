@@ -1,30 +1,33 @@
 \section{Conclusion}
-Observing the results given we can conclude that with the use of the Myoware sensors and Analog Discovery studio, the signal 
-acquisition was processed without any large issues. This was due to the signals received from the sensors being consistent 
-from user to user. When examining the signal no notable features were found leading to raw data being used.
+In this research, the effectiveness of an \acrshort{rnn} implemented for the RoboRIO system for classifying \acrshort{emg} signals
+was examined. Looking back at the research questions, the structure for the \acrshort{rnn} model was constructed to facilitate RQ1
+but the training was not functional. For RQ2 the method for driving the actuators at variable speeds was not implemented but could be
+feasibly implemented as a subVI in Labview. Lastly, for RQ3 a full iteration of the \acrshort{rnn} in LabView took 230 ms, showing a
+clear improvement compared to the testing of the exoskeleton made by the last group since it is now 4.3 times faster.
+
+With the use of the Myoware sensors and Analog Discovery studio, the signal acquisition was processed without any large issues. 
+This was due to the signals received from the sensors being consistent from user to user. 
 The Analog Discovery studio studio made processing and transferring the signals to Python lightwork.
 
+The research by Aviles et al. \cite{RNNEMG} showed the effectiveness of \acrshort{rnn} models for \acrshort{emg} signal classification and
+the research by Zhou et al. \cite{shoulderexo} showed the effectiveness of using LabView for systems that require low latency which combined
+with the work of \acrshort{afes} \cite{AFES} provides a system that combines the best of both worlds.
 
-After inspecting both Python implementations and the data used to train and test them, it was concluded that the problem behind the accuracy
-of the models might be the data itself. The data files were shuffled before being fed into the model to avoid learning on the test subject
-itself, however, the data was not preprocessed in any other way aside from windowing. The data from each file was fed into the model in the 
-same order as it was collected, which followed a consistent class order. This consistent class order might have led the model's gradient to 
-get stuck in a local minimum, which would explain the 25\% accuracy on the validation set.
-
-Another aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
-with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
-into atomic movements and then combining them in a random order could be a solution to this issue.
-\\
-The weights of the \acrshort{rnn} could not be transferred to LabView without great difficulties due to the lack of clarity provided by
-PyTorch. Making use of methods that would allow for either easier weight extraction or for the model to be trained
-directly in LabView would be preferred.
-
-
+As mentioned in the discussion, the main limitation of the project was the lack of a working model. The \acrshort{rnn} model in Python was not
+capable of outputting the four distinct states of function for the exoskeleton.
 
 \subsection{Future Work}
 
-Any future projects should consider acquiring and setting up a motor controller to show visible feedback on the exoskeleton
-as well as solving the issues with the \acrshort{rnn} training in Python as their main priorities.
+PyTorch was used in this project which was found to be incompatible with LabView leading to difficulties when it comes to extracting the 
+weights of the model, as well as the lack of a motor controller leading to physical tests of the model to not be possible. 
+Any future projects should consider acquiring and setting up a motor controller to show visible feedback on the 
+exoskeleton as well as solving the issues with the \acrshort{rnn} training as their main priorities.
+An aspect to take into account in regards to the training of the \acrshort{rnn} is how the data is fed to the model. The issues
+with the training could be caused by the repetitive nature of the data, where the same movement order is repeated. Splitting the data
+into atomic movements and then combining them in a random order could be a solution to this issue.
 
 Once the arm moves, two main directions of improvement could be considered. The first is to mount it on a person. After 
 implementing and mounting it the second direction would be to add more DoF for example shoulder movement.
+
+In the future if all these changes were applied this project would be viable to assist workers in that work using extended and heavy 
+physically static positions.
