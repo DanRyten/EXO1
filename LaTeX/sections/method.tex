@@ -57,29 +57,17 @@ implementations for the same model:
 
 Before going through with implementing the model, a design was made. The final model was based on the work of Aviles et al. \cite{RNNEMG} 
 as their \acrfull{lstm} implementation provided promising results both in accuracy and inference time. The model consists 
-of four layers:
-\begin{itemize}
-
-    \item Input layer
-
-    \item First \acrshort{lstm} layer
-
-    \item Second \acrshort{lstm} layer
-    
-    \item Output layer
-
-\end{itemize}
+of four layers: input layer, first \acrshort{lstm} layer, second \acrshort{lstm} layer, and output layer.
 
 The research by Aviles et al. \cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
-algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table: hardware}) that made the training of a 
+algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table:hardware}) that made the training of a 
 single model take an average of 40 minutes and a usage time restriction of 5 hours, running such an optimizer was not possible. Instead, 
 the parameters were chosen by trial and error with small variations around the parameters shown in the work of Aviles et al. \cite{RNNEMG} where output precision and 
 model size were taken into account as the model needed to be able to be exported to LabView.
 The parameters of most importance were the number of nodes in the \acrshort{lstm} layers and for each combination 3 number of epochs were
 tested, 5, 10 and 15.
 Figure \ref{fig:rnn_struct} shows the structure of our final model after the selection process and table \ref{table:rnn_params} shows the parameters used.
-
 \begin{table}[h]
     \centering
     \caption{Hardware used for training the model}

@@ -43,7 +43,7 @@ artifacts.
 
 \subsubsection{Recurrent Neural Networks}
 \acp{rnn} are a type of neural network designed for processing sequences since by using cycles within the network, a \acrshort{rnn} can maintain a state that
-represents information about the sequence it has seen so far \cite{RNNdef}. This makes them ideal for tasks such as continuous motion prediction from \acrshort{emg} signals
+represents information about the sequence it has seen so far \cite{RNNdef} making them ideal for tasks such as continuous motion prediction from \acrshort{emg} signals
 as the network can learn patterns from the raw data without the need for previous feature extraction as it is done within the model.
 In figure \ref{fig:rnn_basic} the basic structure of a \acrshort{rnn} can be seen, where an input is processed and the output is fed again as an input.
 Research such as \cite{RNNEMG} has shown that \acp{rnn} can be used to predict continuous motion from \acrshort{emg} signals with a degree of 
@@ -60,7 +60,6 @@ accuracy as high as 98.46\%.
 \acrfull{lstm} networks were invented to solve the vanishing gradient problem that \acrshort{rnn} networks have by incorporating non-linear data-dependent controls 
 into a \acrshort{rnn} cell. In order to achieve this, multiplicative input and output gates were added to protect the memory contents from perturbation of irrelevent inputs
 and to protect other units from irrelevant memory contents respectively \cite{LSTMoriginal}.
-These \acrshort{lstm} cells prevent a key weakness, the cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
 These \acrshort{lstm} cells present a key weakness. The cell states tend to grow linearly when processing a time series, which can lead to a loss of information as the cell
 would stop working as a memory. To solve this issue, forget gates were introduced by Gers et al. \cite{LSTMforget}. These gates are designed to learn to reset memory blocks
 when the information they store is no longer relevant. These resets are a gradual reset that corresponds to slowly fading cell states.
@@ -81,9 +80,13 @@ that the exoskeleton exhibits lies in the fact that it can only be driven by the
 with them being fully extended, fully contracted, and at rest. One key issue that made the exoskeleton a valuable proof of concept, but not a viable 
 product consists of the limitations of the hardware and software used. The \acrshort{emg} sensor used employed an outdated Bluetooth module and the software was 
 written in Python, which due to its performance is not suitable for real-time applications in such limited hardware. 
-\\
+
 One study by Zhou et al. \cite{shoulderexo}, worked on a 12-channel shoulder sEMG system with the use of machine learning techniques. Through the testing, they used Delsys EMG sensors, LABVIEW with ML toolbox and an 
 upper limb exoskeleton with more than four \acp{dof} where DAQ and Arduino boards were used for motion control. For the recognition of the shoulder motion and the different patterns \acrshort{ann} was used as an 
 \acrshort{ml} technique. During testing the accuracy of the movement sensors were controlled with the use of eighteen test subjects. The results showed that the recognition yielded an average accuracy of 87.98\%-99.34\% 
 during offline validation and 74\%-98\% during the real-time online testing, showing that the \acrshort{ml} \acrshort{ann} technique could be used for processing multiple \acrshort{semg} channels
 into an exoskeleton.
+
+After analyzing the work of Aviles et al. \cite{RNNEMG} and Zhou et al. \cite{shoulderexo}, it was decided to combine the two approaches. The work of Aviles et al. \cite{RNNEMG} showed the effectiveness of \acrshort{rnn} 
+models for \acrshort{emg} signal classification and the work of Zhou et al. \cite{shoulderexo} showed the effectiveness of using LabView for systems that require low latency, providing solutions to the questions that
+this research aims to answer.
