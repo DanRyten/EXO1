@@ -34,7 +34,7 @@ different action, 0 = static down, 1 = moving up, 2 = static up, 3 = moving down
 movement was expected from the user and the data was collected and labeled accordingly. Which test subject, 
 which arm, what weight was used and what direction the weight was providing resistance in were all recorded. 
 The samples were taken from four subjects all of which were taken on the left arm, 53, 33, 19, and 7 of the 
-samples were taken from subject one, two, three and four respectively.
+samples were taken from subjects one, two, three and four respectively.
 
 
 \subsection{Recurrent Neural Network}
@@ -69,7 +69,7 @@ of four layers:
 
 The research by Aviles et al. \cite{RNNEMG} proposed different ranges of values for parameters such as the number of nodes in each one of the \acrshort{lstm} 
 layers, the learning rate, and the number of epochs in the training process, which were then optimized by a \acrfull{gwo} 
-algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table:hardware}) that made the training of a 
+algorithm for their specific dataset. However, due to hardware restrictions (table \ref{table: hardware}) that made the training of a 
 single model take an average of 40 minutes and a usage time restriction of 5 hours, running such an optimizer was not possible. Instead, 
 the parameters were chosen by trial and error with small variations around the parameters shown in the work of Aviles et al. \cite{RNNEMG} where output precision and 
 model size were taken into account as the model needed to be able to be exported to LabView.
@@ -143,7 +143,7 @@ The Python implementation of the \acrshort{rnn} was done using the PyTorch libra
 to create and train the model while using LSTM layers. The model ran over the training set and for every epoch
 it was validated to test its accuracy in the validation set and for every class in the validation set.
 The training set consisted on 80\% of the data files after having their order randomly shuffled while the validation set consisted on the remaining 20\%. 
-After the model was trained, it was saved both in a .pth file and a .xml file to be used in LabView.
+After the model was trained, the weights were saved both in a .pth file and a .xml file to be used in LabView.
 
 \subsection{Labview Implementation}
 The LabView implementation was multifaceted, with three distinct parts. The first is the preprocessing, done on a separate machine to process the .xml files into properly set up .bin files able
